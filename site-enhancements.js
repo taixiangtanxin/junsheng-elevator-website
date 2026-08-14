@@ -348,6 +348,8 @@
   document.addEventListener('click', event => {
     const link = event.target.closest('a[href^="#"]');
     if (!link) return;
+    // Let the mobile menu trigger open its navigation drawer instead of following #contact.
+    if (link.matches('.mobile-menu,[aria-controls="mobile-navigation"]')) return;
     const hash = link.getAttribute('href');
     if (!hash || hash === '#') return;
     let target;
@@ -355,6 +357,12 @@
     if (!target) return;
     event.preventDefault();
     event.stopImmediatePropagation();
+    const openDrawer = link.closest('.mobile-drawer');
+    if (openDrawer) {
+      openDrawer.classList.remove('open');
+      document.body.classList.remove('drawer-open');
+      q('.mobile-menu')?.setAttribute('aria-expanded', 'false');
+    }
     history.replaceState(null, '', hash);
     scrollToHashTarget(target, true);
   }, true);

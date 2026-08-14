@@ -100,6 +100,8 @@ body:has(main#home) .section-label:after,.detail-page .label:after{content:'';di
   body:before{display:none!important}
   a,button{touch-action:manipulation;-webkit-tap-highlight-color:rgba(215,168,69,.18)}
   .persistent-navigation .nav,.persistent-navigation .nav.nav-elevated,.nav.scrolled,.mobile-drawer-panel,.damingfu-side-nav,.passenger-side-nav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .mobile-drawer{z-index:190}.mobile-drawer-panel{width:100%;max-width:none;padding:calc(20px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom));box-shadow:none}
+  .mobile-drawer-head strong{font-size:18px}.mobile-drawer-links a{min-height:54px}
   .persistent-navigation .nav.nav-elevated,.nav.scrolled{background:#071a27!important;box-shadow:0 7px 18px rgba(2,13,20,.18)!important}
   .detail-page .hero{background-position:center!important;background-attachment:scroll!important}
   .detail-page .hero:before,.hero:before{transition:none!important}
@@ -113,6 +115,7 @@ body:has(main#home) .section-label:after,.detail-page .label:after{content:'';di
   body:has(main#home) .strength-image{background-image:linear-gradient(0deg,rgba(7,26,39,.42),transparent),url('assets/mobile/guangri/gwiz-1.webp')!important}
   body:has(main#home) .case:nth-child(1) .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-manufacturing.webp')!important}
   body:has(main#home) .case:nth-child(2) .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-office.webp')!important}
+  body:has(main#home) #cases .case-grid>.case:not(.large){height:auto;min-height:430px}
   body[style*="photo-1541888946425"]{--hero:url('assets/mobile/home/maintenance.webp')!important}
   .project-logo-showcase.mobile-offscreen .logo-stage img{animation-play-state:paused!important}
   .image-viewer{background:#061722;backdrop-filter:none;-webkit-backdrop-filter:none;transition:opacity .16s ease,visibility .16s ease}
