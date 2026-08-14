@@ -91,3 +91,44 @@ body:has(main#home) .section-label:after,.detail-page .label:after{content:'';di
 @media(hover:hover) and (pointer:fine){.fx-tilt{transition:transform .22s var(--ease-out),box-shadow .3s ease!important}.fx-tilt:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-7px)!important;box-shadow:var(--shadow-float)!important}}
 @media(max-width:800px){.site-progress{height:2px}.image-viewer-nav{width:40px;height:40px;font-size:21px;top:auto;bottom:18px;transform:none}.image-viewer-prev{left:18px}.image-viewer-next{right:18px}.image-viewer-nav:hover{transform:none}.image-viewer-hint{bottom:25px}.image-viewer.zoomed .image-viewer-stage img{transform:scale(1.3)}.fx-card:after{display:none}}
 @media(prefers-reduced-motion:reduce){.site-progress span,.fx-ripple,.image-viewer-stage img,.fx-tilt{animation:none!important;transition:none!important}.detail-page .hero{background-position:center!important}.js-stagger .model,.js-stagger .material-card{opacity:1!important;transform:none!important}}
+
+/* Mobile-only performance and resilient image-viewer layer. Desktop styles stay unchanged. */
+.image-viewer-status{display:none}
+@media(max-width:800px){
+  html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif!important;background-image:none!important}
+  body:before{display:none!important}
+  a,button{touch-action:manipulation;-webkit-tap-highlight-color:rgba(215,168,69,.18)}
+  .persistent-navigation .nav,.persistent-navigation .nav.nav-elevated,.nav.scrolled,.mobile-drawer-panel,.damingfu-side-nav,.passenger-side-nav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .persistent-navigation .nav.nav-elevated,.nav.scrolled{background:#071a27!important;box-shadow:0 7px 18px rgba(2,13,20,.18)!important}
+  .detail-page .hero{background-position:center!important;background-attachment:scroll!important}
+  .detail-page .hero:before,.hero:before{transition:none!important}
+  .case-grid{filter:none!important}
+  .model,.material-card{content-visibility:auto;contain-intrinsic-size:420px;transform-style:flat!important}
+  .model-body,.material-meta{transform:none!important}
+  .model:hover,.material-card:hover,.strength-card:hover,.honor:hover,.case:hover{transform:none!important}
+  .model:active,.material-card:active,.product:active{transform:scale(.992)!important}
+  .js-stagger .model,.js-stagger .material-card{transition-duration:.3s!important;transition-delay:0ms!important}
+  body:has(main#home) .hero:before{background-image:linear-gradient(90deg,rgba(6,24,36,.88) 0%,rgba(6,24,36,.55) 58%,rgba(6,24,36,.28)),linear-gradient(0deg,rgba(6,24,36,.82),transparent 48%),url('assets/mobile/home/hero.webp')!important}
+  body:has(main#home) .strength-image{background-image:linear-gradient(0deg,rgba(7,26,39,.42),transparent),url('assets/mobile/guangri/gwiz-1.webp')!important}
+  body:has(main#home) .case:nth-child(1) .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-manufacturing.webp')!important}
+  body:has(main#home) .case:nth-child(2) .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-office.webp')!important}
+  body[style*="photo-1541888946425"]{--hero:url('assets/mobile/home/maintenance.webp')!important}
+  .project-logo-showcase.mobile-offscreen .logo-stage img{animation-play-state:paused!important}
+  .image-viewer{background:#061722;backdrop-filter:none;-webkit-backdrop-filter:none;transition:opacity .16s ease,visibility .16s ease}
+  .image-viewer-bar{height:calc(60px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 14px 0;gap:8px;background:#071a27}
+  .image-viewer-title{font-size:13px;min-width:0}
+  .image-viewer-actions{gap:6px}.image-viewer-counter{font-size:10px}.image-viewer-actions button{min-width:58px;min-height:40px;padding:8px 10px}
+  .image-viewer-stage{padding:10px 8px calc(72px + env(safe-area-inset-bottom));overflow:hidden;touch-action:pan-y;position:relative}
+  .image-viewer-stage img{max-width:100%;max-height:calc(100dvh - 145px);box-shadow:0 12px 34px rgba(0,0,0,.32);transition:transform .18s ease,opacity .16s ease}
+  .image-viewer-status{position:absolute;z-index:4;inset:0;display:none;place-content:center;justify-items:center;gap:12px;padding:28px;text-align:center;color:#d8e5e9;background:#061722}
+  .image-viewer.is-loading .image-viewer-status,.image-viewer.has-error .image-viewer-status{display:grid}
+  .image-viewer-spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.18);border-top-color:#d7a845;border-radius:50%;animation:viewerSpin .8s linear infinite}
+  .image-viewer-status strong{font-size:14px}.image-viewer-status small{max-width:260px;color:#91aab4;line-height:1.7}
+  .image-viewer-retry{display:none;min-width:112px;min-height:44px;border:0;border-radius:999px;background:#d7a845;color:#071a27;font-weight:800}
+  .image-viewer.has-error .image-viewer-spinner{display:none}.image-viewer.has-error .image-viewer-retry{display:block}
+  .image-viewer-nav{bottom:calc(14px + env(safe-area-inset-bottom));width:46px;height:46px;background:#17394c;border-color:rgba(255,255,255,.22)}
+  .image-viewer-hint{bottom:calc(24px + env(safe-area-inset-bottom));white-space:nowrap}
+  .image-viewer.zoomed .image-viewer-stage{overflow:auto;touch-action:pan-x pan-y}.image-viewer.zoomed .image-viewer-stage img{transform:scale(1.25)}
+}
+@keyframes viewerSpin{to{transform:rotate(360deg)}}

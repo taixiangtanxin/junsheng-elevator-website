@@ -2,6 +2,7 @@
   const q = (selector, root = document) => root.querySelector(selector);
   const qa = (selector, root = document) => [...root.querySelectorAll(selector)];
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobileExperience = matchMedia('(max-width: 800px)').matches;
 
   const progress = document.createElement('div');
   progress.className = 'site-progress';
@@ -14,7 +15,7 @@
     const max = document.documentElement.scrollHeight - innerHeight;
     progressBar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
     q('.nav')?.classList.toggle('nav-elevated', scrollY > 18);
-    if (!reducedMotion && q('.detail-page .hero')) document.documentElement.style.setProperty('--hero-shift', `${Math.min(48, scrollY * .075)}px`);
+    if (!mobileExperience && !reducedMotion && q('.detail-page .hero')) document.documentElement.style.setProperty('--hero-shift', `${Math.min(48, scrollY * .075)}px`);
     scrollTick = false;
   };
   addEventListener('scroll', () => { if (!scrollTick) { scrollTick = true; requestAnimationFrame(updateScrollEffects); } }, { passive: true });
@@ -31,11 +32,48 @@
     document.body.prepend(skip);
   }
 
-  qa('img').forEach((img, index) => {
-    if (index > 1) img.loading = 'lazy';
+  const mobileAssetUrl = raw => {
+    if (!mobileExperience || !raw) return raw;
+    try {
+      const url = new URL(raw, location.href);
+      const marker = '/assets/';
+      if (url.origin !== location.origin || !url.pathname.includes(marker) || url.pathname.includes('/assets/mobile/')) return raw;
+      url.pathname = url.pathname.replace(marker, '/assets/mobile/').replace(/\.(?:jpe?g|png|webp)$/i, '.webp');
+      url.search = '';
+      return url.href;
+    } catch { return raw; }
+  };
+  if (mobileExperience) {
+    const heroValue = document.body.style.getPropertyValue('--hero');
+    const heroMatch = heroValue.match(/url\(["']?([^"')]+)["']?\)/i);
+    if (heroMatch) {
+      const mobileHero = mobileAssetUrl(heroMatch[1]);
+      if (mobileHero !== heroMatch[1]) document.body.style.setProperty('--hero', `url("${mobileHero}")`);
+    }
+  }
+  const optimizeImage = (img, index = 2) => {
+    if (!(img instanceof HTMLImageElement) || img.dataset.mobileOptimized) return;
+    img.dataset.mobileOptimized = 'true';
+    if (mobileExperience) {
+      img.loading = 'lazy';
+      img.fetchPriority = 'low';
+      const originalSrc = img.getAttribute('src');
+      const mobileSrc = mobileAssetUrl(originalSrc);
+      if (mobileSrc && mobileSrc !== originalSrc) {
+        img.dataset.originalSrc = originalSrc;
+        img.src = mobileSrc;
+        img.addEventListener('error', () => {
+          if (!img.dataset.mobileFallback && img.dataset.originalSrc) {
+            img.dataset.mobileFallback = 'true';
+            img.src = img.dataset.originalSrc;
+          }
+        }, { once: true });
+      }
+    } else if (index > 1) img.loading = 'lazy';
     img.decoding = 'async';
     if (!img.alt) img.alt = '';
-  });
+  };
+  qa('img').forEach(optimizeImage);
   qa('a[target="_blank"]').forEach(link => link.rel = 'noopener noreferrer');
 
   const revealTargets = qa('.main > .series, .damingfu-group, .accessory-collection').filter(el => !el.classList.contains('js-reveal'));
@@ -92,6 +130,8 @@
   qa('.model,.material-card,.strength-card,.honor,.case').forEach(decorateCard);
   if ('MutationObserver' in window) new MutationObserver(records => records.forEach(record => record.addedNodes.forEach(node => {
     if (!(node instanceof Element)) return;
+    if (node.matches('img')) optimizeImage(node);
+    qa('img', node).forEach(optimizeImage);
     if (node.matches('.model,.material-card,.strength-card,.honor,.case')) decorateCard(node);
     qa('.model,.material-card,.strength-card,.honor,.case', node).forEach(decorateCard);
   }))).observe(document.body, { childList: true, subtree: true });
@@ -156,7 +196,7 @@
     const viewer = document.createElement('div');
     viewer.className = 'image-viewer';
     viewer.setAttribute('aria-hidden', 'true');
-    viewer.innerHTML = '<div class="image-viewer-bar"><div class="image-viewer-title"></div><div class="image-viewer-actions"><span class="image-viewer-counter"></span><a target="_blank" rel="noopener">打开原图</a><button type="button" aria-label="关闭图片预览">关闭 ×</button></div></div><div class="image-viewer-stage"><button class="image-viewer-nav image-viewer-prev" type="button" aria-label="上一张">‹</button><img alt=""><button class="image-viewer-nav image-viewer-next" type="button" aria-label="下一张">›</button><span class="image-viewer-hint">点击图片缩放 · 方向键切换</span></div>';
+    viewer.innerHTML = '<div class="image-viewer-bar"><div class="image-viewer-title"></div><div class="image-viewer-actions"><span class="image-viewer-counter"></span><a target="_blank" rel="noopener">打开原图</a><button type="button" aria-label="关闭图片预览">关闭 ×</button></div></div><div class="image-viewer-stage"><button class="image-viewer-nav image-viewer-prev" type="button" aria-label="上一张">‹</button><img alt=""><button class="image-viewer-nav image-viewer-next" type="button" aria-label="下一张">›</button><span class="image-viewer-hint">点击图片缩放 · 方向键切换</span><div class="image-viewer-status" role="status" aria-live="polite"><span class="image-viewer-spinner"></span><strong>高清图片加载中…</strong><small>已自动使用手机轻量图片，请稍候</small><button class="image-viewer-retry" type="button">重新加载</button></div></div>';
     document.body.append(viewer);
     const image = q('img', viewer);
     const title = q('.image-viewer-title', viewer);
@@ -165,8 +205,15 @@
     const counter = q('.image-viewer-counter', viewer);
     const prevButton = q('.image-viewer-prev', viewer);
     const nextButton = q('.image-viewer-next', viewer);
+    const stage = q('.image-viewer-stage', viewer);
+    const statusText = q('.image-viewer-status strong', viewer);
+    const statusNote = q('.image-viewer-status small', viewer);
+    const retryButton = q('.image-viewer-retry', viewer);
+    if (mobileExperience) q('.image-viewer-hint', viewer).textContent = '点击图片缩放 · 左右滑动切换';
     let sourceLink;
     let gallery = [], galleryIndex = 0;
+    let loadSequence = 0, loadTimer = 0;
+    let activePreferredSrc = '', activeOriginalSrc = '', activeLabel = '';
     const collectGallery = link => {
       const scope = link.closest('.showcase-gallery,.models,.material-grid,.damingfu-group,.series') || document;
       gallery = qa('.car-detail-link[href$=".jpg"],.car-detail-link[href$=".png"],.car-detail-link[href$=".webp"]', scope);
@@ -178,20 +225,66 @@
       if (!gallery.length) return;
       galleryIndex = (index + gallery.length) % gallery.length;
       sourceLink = gallery[galleryIndex];
-      const src = sourceLink.href;
+      const originalSrc = sourceLink.href;
+      const src = mobileExperience ? mobileAssetUrl(originalSrc) : originalSrc;
       const label = sourceLink.getAttribute('title') || q('img', sourceLink)?.alt || '产品详情';
       image.style.opacity = '0'; viewer.classList.remove('zoomed');
-      image.src = src; image.alt = label; title.textContent = label; original.href = src;
+      image.alt = label; title.textContent = label; original.href = originalSrc;
       counter.textContent = `${galleryIndex + 1} / ${gallery.length}`;
       prevButton.hidden = nextButton.hidden = gallery.length < 2;
-      requestAnimationFrame(() => image.style.opacity = '1');
+      if (!mobileExperience) {
+        image.src = src;
+        requestAnimationFrame(() => image.style.opacity = '1');
+        return;
+      }
+      activePreferredSrc = src; activeOriginalSrc = originalSrc; activeLabel = label;
+      const sequence = ++loadSequence;
+      clearTimeout(loadTimer);
+      viewer.classList.remove('has-error'); viewer.classList.add('is-loading');
+      statusText.textContent = '高清图片加载中…';
+      statusNote.textContent = navigator.onLine ? '已自动使用手机轻量图片，请稍候' : '当前网络已断开，请检查网络连接';
+      image.removeAttribute('src');
+      const fail = () => {
+        if (sequence !== loadSequence) return;
+        clearTimeout(loadTimer);
+        viewer.classList.remove('is-loading'); viewer.classList.add('has-error');
+        statusText.textContent = navigator.onLine ? '图片暂时未能加载' : '当前网络已断开';
+        statusNote.textContent = navigator.onLine ? '请点击重新加载，或稍后切换网络再试' : '恢复网络后点击重新加载';
+      };
+      const attempt = (candidate, allowOriginalFallback) => {
+        const loader = new Image();
+        loader.decoding = 'async';
+        loadTimer = setTimeout(fail, 12000);
+        loader.onload = async () => {
+          if (sequence !== loadSequence) return;
+          clearTimeout(loadTimer);
+          image.src = candidate;
+          try { await image.decode(); } catch {}
+          if (sequence !== loadSequence) return;
+          viewer.classList.remove('is-loading', 'has-error');
+          image.style.opacity = '1';
+          const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+          if (gallery.length > 1 && !connection?.saveData && connection?.effectiveType !== '2g') {
+            const nextLink = gallery[(galleryIndex + 1) % gallery.length];
+            const prefetch = new Image(); prefetch.decoding = 'async'; prefetch.src = mobileAssetUrl(nextLink.href);
+          }
+        };
+        loader.onerror = () => {
+          clearTimeout(loadTimer);
+          if (sequence !== loadSequence) return;
+          if (allowOriginalFallback && candidate !== originalSrc) attempt(originalSrc, false); else fail();
+        };
+        loader.src = candidate;
+      };
+      attempt(src, true);
     };
     const close = () => {
       viewer.classList.remove('open');
       viewer.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('viewer-open');
+      ++loadSequence; clearTimeout(loadTimer);
       image.removeAttribute('src');
-      viewer.classList.remove('zoomed');
+      viewer.classList.remove('zoomed', 'is-loading', 'has-error');
       sourceLink?.focus();
     };
     document.addEventListener('click', event => {
@@ -208,9 +301,24 @@
     closeButton.addEventListener('click', close);
     prevButton.addEventListener('click', event => { event.stopPropagation(); showGalleryItem(galleryIndex - 1); });
     nextButton.addEventListener('click', event => { event.stopPropagation(); showGalleryItem(galleryIndex + 1); });
+    retryButton.addEventListener('click', event => { event.stopPropagation(); if (sourceLink) showGalleryItem(galleryIndex); });
     image.addEventListener('click', () => viewer.classList.toggle('zoomed'));
-    q('.image-viewer-stage', viewer).addEventListener('click', event => { if (event.target === event.currentTarget) close(); });
+    stage.addEventListener('click', event => { if (event.target === event.currentTarget) close(); });
+    if (mobileExperience) {
+      let touchX = 0, touchY = 0;
+      stage.addEventListener('touchstart', event => { const touch = event.changedTouches[0]; touchX = touch.clientX; touchY = touch.clientY; }, { passive: true });
+      stage.addEventListener('touchend', event => {
+        if (viewer.classList.contains('zoomed') || gallery.length < 2) return;
+        const touch = event.changedTouches[0], dx = touch.clientX - touchX, dy = touch.clientY - touchY;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.25) showGalleryItem(galleryIndex + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+    }
     addEventListener('keydown', event => { if (!viewer.classList.contains('open')) return; if (event.key === 'Escape') close(); if (event.key === 'ArrowLeft') showGalleryItem(galleryIndex - 1); if (event.key === 'ArrowRight') showGalleryItem(galleryIndex + 1); });
+  }
+
+  if (mobileExperience && 'IntersectionObserver' in window) {
+    const logoShowcase = q('.project-logo-showcase');
+    if (logoShowcase) new IntersectionObserver(([entry]) => logoShowcase.classList.toggle('mobile-offscreen', !entry.isIntersecting), { rootMargin: '120px 0px' }).observe(logoShowcase);
   }
 
   // Keep every in-page navigation target exactly below the fixed primary header.
