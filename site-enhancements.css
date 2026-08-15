@@ -199,3 +199,54 @@ body:has(main#home) .section-label:after,.detail-page .label:after{content:'';di
   .ambient-section[data-ambient="halo"]>.ambient-scene i{right:-18%;width:170px;height:170px;margin-top:-85px}
 }
 @media(prefers-reduced-motion:reduce){.ambient-scene i,.ambient-scene:before,.ambient-scene:after{animation:none!important}.ambient-section>.ambient-scene{opacity:.42}}
+
+/* Homepage elevator-door hero: code-generated, responsive and image-free. */
+body:has(main#home) .hero{background:#071a27;perspective:1200px}
+body:has(main#home) .hero:before{background-image:linear-gradient(90deg,rgba(3,16,25,.97) 0%,rgba(5,22,33,.92) 34%,rgba(8,30,43,.44) 70%,rgba(4,18,27,.72)),repeating-linear-gradient(90deg,#0a2737 0,#0a2737 calc(12.5% - 1px),rgba(129,172,187,.12) 12.5%)!important;background-position:center!important;background-size:cover!important;transform:none!important;filter:none!important}
+body:has(main#home) .hero:after{z-index:1;background:linear-gradient(90deg,rgba(3,16,25,.88) 0%,rgba(4,18,28,.68) 38%,rgba(4,18,28,.1) 72%),linear-gradient(0deg,rgba(3,15,23,.88),transparent 48%);background-size:auto;mask-image:none;opacity:1;pointer-events:none}
+body:has(main#home) .hero>.ambient-scene{z-index:2;opacity:.42}
+body:has(main#home) .hero-copy{position:relative;z-index:4}
+body:has(main#home) .hero-stats{position:absolute!important;z-index:4}
+.elevator-motion{position:absolute!important;z-index:0!important;inset:0;overflow:hidden;pointer-events:none;contain:layout paint;transform:translateZ(0)}
+.elevator-motion:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 77% 34%,rgba(194,231,242,.13),transparent 31%),linear-gradient(115deg,transparent 49%,rgba(255,255,255,.055) 50%,transparent 61%)}
+.elevator-motion:after{content:'';position:absolute;z-index:6;inset:0;background:linear-gradient(90deg,rgba(3,16,25,.92) 0%,rgba(3,16,25,.72) 39%,transparent 68%),linear-gradient(0deg,rgba(3,15,23,.72),transparent 42%)}
+.elevator-architecture{position:absolute;inset:0;opacity:.7}
+.elevator-architecture span{position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(167,205,218,.25) 20%,rgba(167,205,218,.08) 80%,transparent)}
+.elevator-architecture span:first-child{left:58%}.elevator-architecture span:nth-child(2){left:77%}.elevator-architecture span:last-child{left:96%}
+.elevator-portal{position:absolute;right:5vw;top:13%;bottom:8%;width:min(43vw,630px);padding:clamp(13px,1.4vw,22px);border:1px solid rgba(205,225,231,.38);background:linear-gradient(115deg,#334b57 0%,#a1b1b7 4%,#233d49 9%,#718691 15%,#193541 22%,#607884 76%,#233b47 89%,#9cadaf 96%,#2d4753 100%);box-shadow:0 45px 80px rgba(0,0,0,.42),inset 0 0 0 1px rgba(255,255,255,.14);transform:rotateY(-1.4deg);transform-origin:right center}
+.elevator-crown{position:absolute;z-index:8;left:50%;top:clamp(5px,.8vw,12px);display:flex;align-items:center;gap:8px;height:24px;padding:3px 11px;border:1px solid rgba(160,220,237,.28);border-radius:3px;background:#071a27;color:#79d1ee;font:600 10px 'DM Mono',monospace;letter-spacing:.12em;transform:translateX(-50%);box-shadow:0 0 22px rgba(79,190,225,.12)}
+.elevator-direction{font-size:8px;color:#d7a845;animation:elevatorIndicator 12s ease-in-out infinite}.elevator-floor{min-width:19px}
+.elevator-frame{position:absolute;inset:clamp(35px,3.5vw,52px) clamp(13px,1.4vw,22px) clamp(13px,1.4vw,22px);overflow:hidden;border:2px solid rgba(4,20,29,.9);background:#112c39;box-shadow:inset 0 0 0 4px rgba(211,224,228,.22),inset 0 0 36px rgba(0,0,0,.55)}
+.elevator-cabin{position:absolute;inset:0;overflow:hidden;background:linear-gradient(90deg,#52656e 0%,#d2dadd 8%,#74868e 28%,#aebbc0 50%,#6b7f88 72%,#d1dadd 92%,#4d626c);box-shadow:inset 0 0 70px rgba(1,12,18,.64)}
+.elevator-cabin:before,.elevator-cabin:after{content:'';position:absolute;z-index:2;top:16%;bottom:22%;width:1px;background:rgba(225,239,243,.26);box-shadow:14px 0 rgba(5,24,34,.16)}
+.elevator-cabin:before{left:24%}.elevator-cabin:after{right:27%}
+.cabin-ceiling{position:absolute;z-index:4;left:7%;right:7%;top:0;height:17%;display:flex;gap:5%;padding:3% 6%;background:linear-gradient(#e9f5f5,#899ba2);clip-path:polygon(5% 0,95% 0,100% 100%,0 100%);box-shadow:0 12px 30px rgba(225,249,250,.34)}
+.cabin-ceiling i{flex:1;background:linear-gradient(90deg,#fff,#c6e9ee,#fff);box-shadow:0 0 18px rgba(215,249,255,.85);animation:elevatorLight 12s ease-in-out infinite}
+.cabin-back{position:absolute;inset:17% 8% 20%;background:linear-gradient(100deg,rgba(20,45,55,.54),rgba(222,233,235,.16) 48%,rgba(13,35,45,.48));border:1px solid rgba(223,236,239,.18);box-shadow:inset 0 0 38px rgba(5,23,31,.36)}
+.cabin-display{position:absolute;right:7%;top:12%;padding:6px 7px;background:#061821;border:1px solid rgba(135,209,231,.25);color:#78daf5;font:600 clamp(7px,.65vw,10px) 'DM Mono',monospace;box-shadow:0 0 12px rgba(60,185,220,.12)}
+.cabin-handrail{position:absolute;left:6%;right:6%;bottom:15%;height:5px;border-radius:5px;background:linear-gradient(#d9e1e3,#586a71 55%,#c6d0d3);box-shadow:0 5px 8px rgba(0,0,0,.45)}
+.cabin-floor{position:absolute;z-index:3;left:-5%;right:-5%;bottom:-1%;height:23%;background:repeating-linear-gradient(115deg,rgba(217,225,225,.24) 0 1px,transparent 1px 42px),linear-gradient(100deg,#203b47,#697d85 45%,#1a3541);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%)}
+.elevator-door{position:absolute;z-index:5;top:0;bottom:0;width:50.25%;overflow:hidden;background:linear-gradient(90deg,#63767f 0%,#b8c4c8 9%,#71828a 24%,#d0d7d9 46%,#72838a 70%,#adb9bd 90%,#5e717a 100%);box-shadow:inset 0 0 1px #fff,0 0 15px rgba(0,0,0,.38);will-change:transform;backface-visibility:hidden}
+.elevator-door:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,rgba(0,0,0,.02) 1px 3px)}
+.elevator-door i{position:absolute;top:0;bottom:0;width:16%;background:linear-gradient(90deg,rgba(8,27,35,.2),rgba(255,255,255,.15),rgba(7,28,37,.12));opacity:.65}
+.elevator-door-left{left:0;transform-origin:left center;animation:elevatorDoorLeft 12s cubic-bezier(.68,0,.25,1) infinite}.elevator-door-left i{right:8%}
+.elevator-door-right{right:0;transform-origin:right center;animation:elevatorDoorRight 12s cubic-bezier(.68,0,.25,1) infinite}.elevator-door-right i{left:8%}
+.elevator-door-seam{position:absolute;z-index:7;left:50%;top:0;bottom:0;width:2px;background:rgba(3,17,24,.76);box-shadow:-1px 0 rgba(232,241,243,.18);animation:elevatorSeam 12s ease-in-out infinite}
+@keyframes elevatorDoorLeft{0%,16%,88%,100%{transform:translate3d(0,0,0)}36%,65%{transform:translate3d(-96%,0,0)}}
+@keyframes elevatorDoorRight{0%,16%,88%,100%{transform:translate3d(0,0,0)}36%,65%{transform:translate3d(96%,0,0)}}
+@keyframes elevatorSeam{0%,16%,88%,100%{opacity:1}34%,67%{opacity:0}}
+@keyframes elevatorLight{0%,15%,89%,100%{filter:brightness(.72);opacity:.72}38%,65%{filter:brightness(1.12);opacity:1}}
+@keyframes elevatorIndicator{0%,16%,88%,100%{transform:rotate(45deg);opacity:.55}36%,65%{transform:rotate(0);opacity:1}}
+
+@media(max-width:800px){
+  body:has(main#home) .hero:before{background-image:linear-gradient(0deg,rgba(3,16,25,.94),rgba(5,22,33,.18) 76%),repeating-linear-gradient(90deg,#0a2737 0,#0a2737 calc(25% - 1px),rgba(129,172,187,.12) 25%)!important}
+  body:has(main#home) .hero:after{background:linear-gradient(0deg,rgba(3,15,23,.95) 0%,rgba(3,15,23,.73) 32%,rgba(3,15,23,.12) 72%);opacity:1}
+  body:has(main#home) .hero>.ambient-scene{opacity:.28}
+  .elevator-motion:after{background:linear-gradient(0deg,rgba(3,15,23,.78) 0%,rgba(3,15,23,.34) 43%,rgba(3,15,23,.04) 75%)}
+  .elevator-portal{left:14px;right:14px;top:80px;bottom:18px;width:auto;padding:10px;transform:none;opacity:.9}
+  .elevator-frame{inset:36px 10px 10px}
+  .elevator-architecture span:first-child{left:25%}.elevator-architecture span:nth-child(2){left:50%}.elevator-architecture span:last-child{left:75%}
+  .cabin-display{font-size:8px}
+}
+@media(max-width:380px){.elevator-portal{left:8px;right:8px;top:74px;bottom:12px}.elevator-frame{inset:34px 8px 8px}.elevator-motion:after{background:linear-gradient(0deg,rgba(3,15,23,.84),rgba(3,15,23,.28) 62%,transparent)}}
+@media(prefers-reduced-motion:reduce){.elevator-door-left{animation:none!important;transform:translate3d(-78%,0,0)}.elevator-door-right{animation:none!important;transform:translate3d(78%,0,0)}.elevator-door-seam,.cabin-ceiling i,.elevator-direction{animation:none!important}.elevator-door-seam{opacity:0}}
