@@ -254,40 +254,40 @@ body:has(main#home) .hero-stats{position:absolute!important;z-index:4}
 /* Premium elevator-mechanical ambient system */
 .ambient-section[data-ambient]{
   --mech-line:rgba(18,91,124,.22);--mech-soft:rgba(30,136,177,.09);--mech-metal:rgba(7,39,55,.16);--mech-gold:rgba(184,132,34,.32);
-  --mech-wheel-left:70%;--mech-wheel-top:10%;--mech-rail-right:8%;--mech-car-right:13%;--mech-car-top:16%;
+  --mech-wheel-left:70%;--mech-wheel-top:10%;--mech-rail-right:-2%;--mech-car-right:2%;--mech-car-top:16%;
 }
 .ambient-section[data-ambient="cinematic"],.ambient-section[data-ambient="blueprint"]{--mech-line:rgba(111,211,240,.28);--mech-soft:rgba(89,196,229,.12);--mech-metal:rgba(208,235,242,.14);--mech-gold:rgba(231,183,75,.38)}
-.ambient-section[data-ambient="mist"]{--mech-wheel-left:-8%;--mech-wheel-top:7%;--mech-rail-right:7%;--mech-car-right:12%}
-.ambient-section[data-ambient="aurora"]{--mech-wheel-left:73%;--mech-wheel-top:-12%;--mech-rail-right:59%;--mech-car-right:64%;--mech-line:rgba(18,108,149,.25)}
-.ambient-section[data-ambient="lines"]{--mech-wheel-left:7%;--mech-wheel-top:44%;--mech-rail-right:6%;--mech-car-right:11%;--mech-car-top:10%}
-.ambient-section[data-ambient="blueprint"]{--mech-wheel-left:71%;--mech-wheel-top:8%;--mech-rail-right:47%;--mech-car-right:52%}
-.ambient-section[data-ambient="halo"]{--mech-wheel-left:72%;--mech-wheel-top:-16%;--mech-rail-right:8%;--mech-car-right:13%;--mech-line:rgba(5,34,48,.28);--mech-soft:rgba(6,46,65,.1);--mech-metal:rgba(4,28,40,.2);--mech-gold:rgba(255,255,255,.32)}
+.ambient-section[data-ambient="mist"]{--mech-wheel-left:-8%;--mech-wheel-top:7%}
+.ambient-section[data-ambient="aurora"]{--mech-wheel-left:73%;--mech-wheel-top:-12%;--mech-line:rgba(18,108,149,.25)}
+.ambient-section[data-ambient="lines"]{--mech-wheel-left:7%;--mech-wheel-top:44%;--mech-car-top:10%}
+.ambient-section[data-ambient="blueprint"]{--mech-wheel-left:71%;--mech-wheel-top:8%}
+.ambient-section[data-ambient="halo"]{--mech-wheel-left:72%;--mech-wheel-top:-16%;--mech-line:rgba(5,34,48,.28);--mech-soft:rgba(6,46,65,.1);--mech-metal:rgba(4,28,40,.2);--mech-gold:rgba(255,255,255,.32)}
 .ambient-section[data-ambient]>.ambient-scene{opacity:.9;background:radial-gradient(circle at 82% 20%,var(--mech-soft),transparent 32%),linear-gradient(118deg,transparent 26%,var(--mech-soft) 50%,transparent 72%)}
 .ambient-section[data-ambient="cinematic"]>.ambient-scene{opacity:.47}
-.ambient-section[data-ambient]>.ambient-scene:before{inset:-12%;width:auto;height:auto;background-image:linear-gradient(var(--mech-line) 1px,transparent 1px),linear-gradient(90deg,var(--mech-line) 1px,transparent 1px),repeating-linear-gradient(90deg,transparent 0 12.35%,var(--mech-metal) 12.5%,transparent 12.65%);background-size:100% 58px,58px 100%,100% 100%;transform:none;animation:mechShaftGrid 18s linear infinite;opacity:.76}
+.ambient-section[data-ambient]>.ambient-scene:before{inset:-12%;width:auto;height:auto;background-image:linear-gradient(112deg,transparent 12%,var(--mech-soft) 34%,transparent 52%,var(--mech-metal) 69%,transparent 86%),radial-gradient(ellipse at 82% 44%,var(--mech-soft),transparent 42%);background-size:180% 100%,100% 100%;background-position:100% 0,center;transform:none;animation:mechShaftGlow 18s ease-in-out infinite alternate;opacity:.68}
 .ambient-section[data-ambient]>.ambient-scene:after{inset:auto;top:-42%;bottom:-42%;left:-24%;width:22%;height:auto;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),var(--mech-gold),rgba(255,255,255,.12),transparent);transform:skewX(-15deg);filter:blur(2px);animation:mechMetalScan 14s cubic-bezier(.5,0,.25,1) infinite;opacity:0}
 .ambient-section[data-ambient]>.ambient-scene i:first-child{display:block;width:clamp(210px,25vw,390px);height:auto;aspect-ratio:1;left:var(--mech-wheel-left);right:auto;top:var(--mech-wheel-top);bottom:auto;margin:0;border:1px solid var(--mech-line);border-radius:50%;background:radial-gradient(circle,transparent 0 13%,var(--mech-line) 13.5% 14.5%,transparent 15% 34%,var(--mech-soft) 34.5% 47%,transparent 47.5% 62%,var(--mech-line) 62.5% 63.5%,transparent 64%),repeating-conic-gradient(from 0deg,var(--mech-line) 0 1.1deg,transparent 1.1deg 44deg);box-shadow:inset 0 0 0 12px var(--mech-soft),0 0 0 1px var(--mech-soft),0 24px 70px rgba(4,29,42,.08);transform:none;animation:mechSheaveSpin 34s linear infinite}
 .ambient-section[data-ambient]>.ambient-scene i:first-child:before{content:'';position:absolute;inset:39%;border:1px solid var(--mech-gold);border-radius:50%;background:radial-gradient(circle,var(--mech-gold) 0 16%,transparent 18%);box-shadow:0 0 24px var(--mech-soft)}
 .ambient-section[data-ambient]>.ambient-scene i:first-child:after{content:'';position:absolute;inset:7%;border:1px dashed var(--mech-line);border-radius:50%}
-.ambient-section[data-ambient]>.ambient-scene i:nth-child(2){display:block;left:auto;right:var(--mech-rail-right);top:-12%;bottom:auto;width:clamp(170px,21vw,330px);height:124%;border:0;border-left:3px double var(--mech-line);border-right:3px double var(--mech-line);border-radius:0;background:repeating-linear-gradient(0deg,transparent 0 55px,var(--mech-line) 56px 57px),linear-gradient(90deg,var(--mech-soft),transparent 13% 87%,var(--mech-soft));box-shadow:inset 11px 0 0 -10px var(--mech-metal),inset -11px 0 0 -10px var(--mech-metal);transform:none;animation:mechRailsTravel 16s linear infinite}
+.ambient-section[data-ambient]>.ambient-scene i:nth-child(2){display:block;left:auto;right:var(--mech-rail-right);top:-12%;bottom:auto;width:clamp(135px,16vw,240px);height:124%;border:0;border-left:3px double var(--mech-line);border-right:3px double var(--mech-line);border-radius:0;background:repeating-linear-gradient(0deg,transparent 0 109px,var(--mech-line) 110px 111px),linear-gradient(90deg,var(--mech-soft),transparent 13% 87%,var(--mech-soft));box-shadow:inset 11px 0 0 -10px var(--mech-metal),inset -11px 0 0 -10px var(--mech-metal);opacity:.5;transform:none;animation:mechRailsTravel 22s linear infinite}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(2):before,.ambient-section[data-ambient]>.ambient-scene i:nth-child(2):after{content:'';position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(transparent,var(--mech-gold) 12%,var(--mech-line) 50%,var(--mech-gold) 88%,transparent);box-shadow:0 0 9px var(--mech-soft)}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(2):before{left:28%}.ambient-section[data-ambient]>.ambient-scene i:nth-child(2):after{right:28%}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(3){display:block;left:auto;right:var(--mech-car-right);top:var(--mech-car-top);bottom:auto;width:clamp(68px,7vw,108px);height:clamp(105px,11vw,168px);border:1px solid var(--mech-line);border-radius:3px;background:linear-gradient(135deg,rgba(255,255,255,.2),var(--mech-soft) 38%,transparent 39%),linear-gradient(90deg,var(--mech-metal),transparent,var(--mech-metal));box-shadow:inset 0 0 0 5px var(--mech-soft),0 18px 34px rgba(3,23,34,.12);transform:none;animation:mechCabinTravel 13s cubic-bezier(.65,0,.35,1) infinite}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(3):before{content:'↕  18';position:absolute;left:9px;right:9px;top:9px;padding:5px 0;border-bottom:1px solid var(--mech-line);color:var(--mech-gold);font:600 9px 'DM Mono',monospace;letter-spacing:.1em;text-align:center}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(3):after{content:'';position:absolute;left:14%;right:14%;bottom:10%;height:2px;background:var(--mech-gold);box-shadow:0 0 12px var(--mech-gold)}
-@keyframes mechShaftGrid{to{transform:translate3d(0,58px,0)}}
+@keyframes mechShaftGlow{to{background-position:0 0,center;opacity:.92}}
 @keyframes mechMetalScan{0%,12%{transform:translateX(0) skewX(-15deg);opacity:0}24%,57%{opacity:.72}78%,100%{transform:translateX(590%) skewX(-15deg);opacity:0}}
 @keyframes mechSheaveSpin{to{transform:rotate(360deg)}}
-@keyframes mechRailsTravel{to{background-position:0 57px,0 0}}
+@keyframes mechRailsTravel{to{background-position:0 111px,0 0}}
 @keyframes mechCabinTravel{0%,100%{transform:translate3d(0,0,0);opacity:.5}45%,58%{transform:translate3d(0,clamp(110px,16vh,220px),0);opacity:1}}
 
 @media(max-width:800px){
   .ambient-section[data-ambient]>.ambient-scene{opacity:.68}
   .ambient-section[data-ambient="cinematic"]>.ambient-scene{opacity:.3}
-  .ambient-section[data-ambient]>.ambient-scene:before{background-size:100% 72px,72px 100%,100% 100%;opacity:.54;animation-duration:24s}
+  .ambient-section[data-ambient]>.ambient-scene:before{background-size:210% 100%,100% 100%;opacity:.48;animation-duration:24s}
   .ambient-section[data-ambient]>.ambient-scene:after{width:30%;animation-duration:18s}
   .ambient-section[data-ambient]>.ambient-scene i:first-child{width:190px;left:auto;right:-72px;top:8%}
-  .ambient-section[data-ambient]>.ambient-scene i:nth-child(2){display:block!important;width:128px;right:18px;opacity:.68;animation-duration:22s}
+  .ambient-section[data-ambient]>.ambient-scene i:nth-child(2){display:block!important;width:108px;right:-38px;opacity:.42;animation-duration:26s}
   .ambient-section[data-ambient]>.ambient-scene i:nth-child(3){display:none!important}
 }
 @media(prefers-reduced-motion:reduce){.ambient-section[data-ambient]>.ambient-scene:before,.ambient-section[data-ambient]>.ambient-scene:after,.ambient-section[data-ambient]>.ambient-scene i{animation:none!important}.ambient-section[data-ambient]>.ambient-scene:after{opacity:.24}}
