@@ -110,11 +110,13 @@
     if (!q('main#home')) document.body.classList.add('detail-page');
   }
 
-  // Subtle, section-specific ambient backgrounds. Animation only runs near the viewport.
+  // Premium elevator-mechanical ambient backgrounds. Animation only runs near the viewport.
   const ambientTargets = new Set([
     ...qa('main#home > section'),
     ...qa('.detail-page > .hero, .detail-page > .cta'),
-    ...qa('.detail-page .main > .series, .detail-page .damingfu-content > .series')
+    ...qa('.detail-page .main > section, .detail-page .damingfu-content > section'),
+    ...qa('.detail-page .product-stats, .detail-page .esw-series, .detail-page .damingfu-showcase, .detail-page .material-library'),
+    ...qa('body > footer')
   ]);
   qa('.detail-page .main').forEach(container => { if (!q('.series', container)) ambientTargets.add(container); });
   const homeAmbients = { home: 'cinematic', about: 'mist', honors: 'aurora', cases: 'lines', products: 'blueprint', contact: 'halo' };
