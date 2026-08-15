@@ -235,7 +235,7 @@ body:has(main#home) .hero-stats{position:absolute!important;z-index:4}
 @keyframes elevatorDoorLeft{0%,16%,88%,100%{transform:translate3d(0,0,0)}36%,65%{transform:translate3d(-96%,0,0)}}
 @keyframes elevatorDoorRight{0%,16%,88%,100%{transform:translate3d(0,0,0)}36%,65%{transform:translate3d(96%,0,0)}}
 @keyframes elevatorSeam{0%,16%,88%,100%{opacity:1}34%,67%{opacity:0}}
-@keyframes elevatorLight{0%,15%,89%,100%{filter:brightness(.72);opacity:.72}38%,65%{filter:brightness(1.12);opacity:1}}
+@keyframes elevatorLight{0%,15%,89%,100%{opacity:.68}38%,65%{opacity:1}}
 @keyframes elevatorIndicator{0%,16%,88%,100%{transform:rotate(45deg);opacity:.55}36%,65%{transform:rotate(0);opacity:1}}
 
 @media(max-width:800px){
@@ -264,12 +264,12 @@ body:has(main#home) .hero-stats{position:absolute!important;z-index:4}
 .ambient-section[data-ambient="halo"]{--mech-wheel-left:72%;--mech-wheel-top:-16%;--mech-line:rgba(5,34,48,.28);--mech-soft:rgba(6,46,65,.1);--mech-metal:rgba(4,28,40,.2);--mech-gold:rgba(255,255,255,.32)}
 .ambient-section[data-ambient]>.ambient-scene{opacity:.9;background:radial-gradient(circle at 82% 20%,var(--mech-soft),transparent 32%),linear-gradient(118deg,transparent 26%,var(--mech-soft) 50%,transparent 72%)}
 .ambient-section[data-ambient="cinematic"]>.ambient-scene{opacity:.47}
-.ambient-section[data-ambient]>.ambient-scene:before{inset:-12%;width:auto;height:auto;background-image:linear-gradient(112deg,transparent 12%,var(--mech-soft) 34%,transparent 52%,var(--mech-metal) 69%,transparent 86%),radial-gradient(ellipse at 82% 44%,var(--mech-soft),transparent 42%);background-size:180% 100%,100% 100%;background-position:100% 0,center;transform:none;animation:mechShaftGlow 18s ease-in-out infinite alternate;opacity:.68}
+.ambient-section[data-ambient]>.ambient-scene:before{inset:-12%;width:auto;height:auto;background-image:linear-gradient(112deg,transparent 12%,var(--mech-soft) 34%,transparent 52%,var(--mech-metal) 69%,transparent 86%),radial-gradient(ellipse at 82% 44%,var(--mech-soft),transparent 42%);background-size:180% 100%,100% 100%;background-position:50% 0,center;transform:none;animation:none;opacity:.76}
 .ambient-section[data-ambient]>.ambient-scene:after{inset:auto;top:-42%;bottom:-42%;left:-24%;width:22%;height:auto;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),var(--mech-gold),rgba(255,255,255,.12),transparent);transform:skewX(-15deg);animation:mechMetalScan 14s cubic-bezier(.5,0,.25,1) infinite;opacity:0}
 .ambient-section[data-ambient]>.ambient-scene i:first-child{display:block;width:clamp(210px,25vw,390px);height:auto;aspect-ratio:1;left:var(--mech-wheel-left);right:auto;top:var(--mech-wheel-top);bottom:auto;margin:0;border:1px solid var(--mech-line);border-radius:50%;background:radial-gradient(circle,transparent 0 13%,var(--mech-line) 13.5% 14.5%,transparent 15% 34%,var(--mech-soft) 34.5% 47%,transparent 47.5% 62%,var(--mech-line) 62.5% 63.5%,transparent 64%),repeating-conic-gradient(from 0deg,var(--mech-line) 0 1.1deg,transparent 1.1deg 44deg);box-shadow:inset 0 0 0 12px var(--mech-soft),0 0 0 1px var(--mech-soft),0 24px 70px rgba(4,29,42,.08);transform:none;animation:mechSheaveSpin 34s linear infinite}
 .ambient-section[data-ambient]>.ambient-scene i:first-child:before{content:'';position:absolute;inset:39%;border:1px solid var(--mech-gold);border-radius:50%;background:radial-gradient(circle,var(--mech-gold) 0 16%,transparent 18%);box-shadow:0 0 24px var(--mech-soft)}
 .ambient-section[data-ambient]>.ambient-scene i:first-child:after{content:'';position:absolute;inset:7%;border:1px dashed var(--mech-line);border-radius:50%}
-.ambient-section[data-ambient]>.ambient-scene i:nth-child(2){display:block;left:auto;right:var(--mech-rail-right);top:-12%;bottom:auto;width:clamp(135px,16vw,240px);height:124%;border:0;border-left:3px double var(--mech-line);border-right:3px double var(--mech-line);border-radius:0;background:repeating-linear-gradient(0deg,transparent 0 109px,var(--mech-line) 110px 111px),linear-gradient(90deg,var(--mech-soft),transparent 13% 87%,var(--mech-soft));box-shadow:inset 11px 0 0 -10px var(--mech-metal),inset -11px 0 0 -10px var(--mech-metal);opacity:.5;transform:none;animation:mechRailsTravel 22s linear infinite}
+.ambient-section[data-ambient]>.ambient-scene i:nth-child(2){display:block;left:auto;right:var(--mech-rail-right);top:-3%;bottom:auto;width:clamp(135px,16vw,240px);height:106%;border:0;border-left:3px double var(--mech-line);border-right:3px double var(--mech-line);border-radius:0;background:repeating-linear-gradient(0deg,transparent 0 109px,var(--mech-line) 110px 111px),linear-gradient(90deg,var(--mech-soft),transparent 13% 87%,var(--mech-soft));box-shadow:inset 11px 0 0 -10px var(--mech-metal),inset -11px 0 0 -10px var(--mech-metal);opacity:.5;transform:none;animation:mechRailsTravel 22s linear infinite}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(2):before,.ambient-section[data-ambient]>.ambient-scene i:nth-child(2):after{content:'';position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(transparent,var(--mech-gold) 12%,var(--mech-line) 50%,var(--mech-gold) 88%,transparent);box-shadow:0 0 9px var(--mech-soft)}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(2):before{left:28%}.ambient-section[data-ambient]>.ambient-scene i:nth-child(2):after{right:28%}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(3){display:block;left:auto;right:var(--mech-car-right);top:var(--mech-car-top);bottom:auto;width:clamp(68px,7vw,108px);height:clamp(105px,11vw,168px);border:1px solid var(--mech-line);border-radius:3px;background:linear-gradient(135deg,rgba(255,255,255,.2),var(--mech-soft) 38%,transparent 39%),linear-gradient(90deg,var(--mech-metal),transparent,var(--mech-metal));box-shadow:inset 0 0 0 5px var(--mech-soft),0 18px 34px rgba(3,23,34,.12);transform:none;animation:mechCabinTravel 13s cubic-bezier(.65,0,.35,1) infinite}
@@ -299,9 +299,10 @@ body:has(main#home) .nav-links{backdrop-filter:none!important;-webkit-backdrop-f
 body:has(main#home) .case-grid{filter:none!important}
 body:has(main#home) .case{box-shadow:0 14px 28px rgba(7,26,39,.1)}
 .ambient-scene i,.ambient-scene:before,.ambient-scene:after{will-change:auto}
-.ambient-active>.ambient-scene i,.ambient-active>.ambient-scene:before,.ambient-active>.ambient-scene:after{will-change:transform,opacity}
-.is-scrolling .ambient-scene i,.is-scrolling .ambient-scene:before,.is-scrolling .ambient-scene:after,.is-scrolling .elevator-door,.is-scrolling .elevator-door-seam,.is-scrolling .cabin-ceiling i,.is-scrolling .elevator-direction,.is-scrolling .logo-stage img{animation-play-state:paused!important}
-@media(max-width:800px){.ambient-section[data-ambient]>.ambient-scene:after{display:none}.ambient-active>.ambient-scene:before{will-change:transform,opacity}}
+.ambient-active>.ambient-scene i,.ambient-active>.ambient-scene:after{will-change:transform,opacity}
+body:has(main#home) .hero>.ambient-scene{display:none!important}
+.ambient-section[data-ambient]>.ambient-scene:after{display:none}
+.hero-offscreen .elevator-door,.hero-offscreen .elevator-door-seam,.hero-offscreen .cabin-ceiling i,.hero-offscreen .elevator-direction{animation-play-state:paused!important}
 
 /* Homepage first-transition stabilization */
 body:has(main#home) .nav{height:92px!important;transition:background-color .2s ease,box-shadow .2s ease!important}

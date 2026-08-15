@@ -150,6 +150,10 @@
     const ambientObserver = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('ambient-active', entry.isIntersecting)), { rootMargin: '0px', threshold: .01 });
     ambientTargets.forEach(section => ambientObserver.observe(section));
   }
+  const homepageHero = q('main#home > .hero');
+  if (homepageHero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => homepageHero.classList.toggle('hero-offscreen', !entry.isIntersecting), { threshold: 0 }).observe(homepageHero);
+  }
 
   const hoverFine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   const decorateCard = card => {
