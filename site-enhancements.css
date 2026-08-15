@@ -265,7 +265,7 @@ body:has(main#home) .hero-stats{position:absolute!important;z-index:4}
 .ambient-section[data-ambient]>.ambient-scene{opacity:.9;background:radial-gradient(circle at 82% 20%,var(--mech-soft),transparent 32%),linear-gradient(118deg,transparent 26%,var(--mech-soft) 50%,transparent 72%)}
 .ambient-section[data-ambient="cinematic"]>.ambient-scene{opacity:.47}
 .ambient-section[data-ambient]>.ambient-scene:before{inset:-12%;width:auto;height:auto;background-image:linear-gradient(112deg,transparent 12%,var(--mech-soft) 34%,transparent 52%,var(--mech-metal) 69%,transparent 86%),radial-gradient(ellipse at 82% 44%,var(--mech-soft),transparent 42%);background-size:180% 100%,100% 100%;background-position:100% 0,center;transform:none;animation:mechShaftGlow 18s ease-in-out infinite alternate;opacity:.68}
-.ambient-section[data-ambient]>.ambient-scene:after{inset:auto;top:-42%;bottom:-42%;left:-24%;width:22%;height:auto;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),var(--mech-gold),rgba(255,255,255,.12),transparent);transform:skewX(-15deg);filter:blur(2px);animation:mechMetalScan 14s cubic-bezier(.5,0,.25,1) infinite;opacity:0}
+.ambient-section[data-ambient]>.ambient-scene:after{inset:auto;top:-42%;bottom:-42%;left:-24%;width:22%;height:auto;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),var(--mech-gold),rgba(255,255,255,.12),transparent);transform:skewX(-15deg);animation:mechMetalScan 14s cubic-bezier(.5,0,.25,1) infinite;opacity:0}
 .ambient-section[data-ambient]>.ambient-scene i:first-child{display:block;width:clamp(210px,25vw,390px);height:auto;aspect-ratio:1;left:var(--mech-wheel-left);right:auto;top:var(--mech-wheel-top);bottom:auto;margin:0;border:1px solid var(--mech-line);border-radius:50%;background:radial-gradient(circle,transparent 0 13%,var(--mech-line) 13.5% 14.5%,transparent 15% 34%,var(--mech-soft) 34.5% 47%,transparent 47.5% 62%,var(--mech-line) 62.5% 63.5%,transparent 64%),repeating-conic-gradient(from 0deg,var(--mech-line) 0 1.1deg,transparent 1.1deg 44deg);box-shadow:inset 0 0 0 12px var(--mech-soft),0 0 0 1px var(--mech-soft),0 24px 70px rgba(4,29,42,.08);transform:none;animation:mechSheaveSpin 34s linear infinite}
 .ambient-section[data-ambient]>.ambient-scene i:first-child:before{content:'';position:absolute;inset:39%;border:1px solid var(--mech-gold);border-radius:50%;background:radial-gradient(circle,var(--mech-gold) 0 16%,transparent 18%);box-shadow:0 0 24px var(--mech-soft)}
 .ambient-section[data-ambient]>.ambient-scene i:first-child:after{content:'';position:absolute;inset:7%;border:1px dashed var(--mech-line);border-radius:50%}
@@ -275,10 +275,10 @@ body:has(main#home) .hero-stats{position:absolute!important;z-index:4}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(3){display:block;left:auto;right:var(--mech-car-right);top:var(--mech-car-top);bottom:auto;width:clamp(68px,7vw,108px);height:clamp(105px,11vw,168px);border:1px solid var(--mech-line);border-radius:3px;background:linear-gradient(135deg,rgba(255,255,255,.2),var(--mech-soft) 38%,transparent 39%),linear-gradient(90deg,var(--mech-metal),transparent,var(--mech-metal));box-shadow:inset 0 0 0 5px var(--mech-soft),0 18px 34px rgba(3,23,34,.12);transform:none;animation:mechCabinTravel 13s cubic-bezier(.65,0,.35,1) infinite}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(3):before{content:'↕  18';position:absolute;left:9px;right:9px;top:9px;padding:5px 0;border-bottom:1px solid var(--mech-line);color:var(--mech-gold);font:600 9px 'DM Mono',monospace;letter-spacing:.1em;text-align:center}
 .ambient-section[data-ambient]>.ambient-scene i:nth-child(3):after{content:'';position:absolute;left:14%;right:14%;bottom:10%;height:2px;background:var(--mech-gold);box-shadow:0 0 12px var(--mech-gold)}
-@keyframes mechShaftGlow{to{background-position:0 0,center;opacity:.92}}
+@keyframes mechShaftGlow{to{transform:translate3d(-5%,0,0) scale(1.025);opacity:.88}}
 @keyframes mechMetalScan{0%,12%{transform:translateX(0) skewX(-15deg);opacity:0}24%,57%{opacity:.72}78%,100%{transform:translateX(590%) skewX(-15deg);opacity:0}}
 @keyframes mechSheaveSpin{to{transform:rotate(360deg)}}
-@keyframes mechRailsTravel{to{background-position:0 111px,0 0}}
+@keyframes mechRailsTravel{to{transform:translate3d(0,32px,0)}}
 @keyframes mechCabinTravel{0%,100%{transform:translate3d(0,0,0);opacity:.5}45%,58%{transform:translate3d(0,clamp(110px,16vh,220px),0);opacity:1}}
 
 @media(max-width:800px){
@@ -291,3 +291,14 @@ body:has(main#home) .hero-stats{position:absolute!important;z-index:4}
   .ambient-section[data-ambient]>.ambient-scene i:nth-child(3){display:none!important}
 }
 @media(prefers-reduced-motion:reduce){.ambient-section[data-ambient]>.ambient-scene:before,.ambient-section[data-ambient]>.ambient-scene:after,.ambient-section[data-ambient]>.ambient-scene i{animation:none!important}.ambient-section[data-ambient]>.ambient-scene:after{opacity:.24}}
+
+/* Scroll-performance layer: preserve the design while avoiding paint-heavy work in motion. */
+.persistent-navigation .nav,.persistent-navigation .nav.nav-elevated,.nav.scrolled{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.persistent-navigation .nav.nav-elevated,.nav.scrolled{background-color:rgba(7,26,39,.985)!important}
+body:has(main#home) .nav-links{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(3,18,28,.58)}
+body:has(main#home) .case-grid{filter:none!important}
+body:has(main#home) .case{box-shadow:0 14px 28px rgba(7,26,39,.1)}
+.ambient-scene i,.ambient-scene:before,.ambient-scene:after{will-change:auto}
+.ambient-active>.ambient-scene i,.ambient-active>.ambient-scene:before,.ambient-active>.ambient-scene:after{will-change:transform,opacity}
+.is-scrolling .ambient-scene i,.is-scrolling .ambient-scene:before,.is-scrolling .ambient-scene:after,.is-scrolling .elevator-door,.is-scrolling .elevator-door-seam,.is-scrolling .cabin-ceiling i,.is-scrolling .elevator-direction,.is-scrolling .logo-stage img{animation-play-state:paused!important}
+@media(max-width:800px){.ambient-section[data-ambient]>.ambient-scene:after{display:none}.ambient-active>.ambient-scene:before{will-change:transform,opacity}}

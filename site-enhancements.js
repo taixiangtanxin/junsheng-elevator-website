@@ -11,6 +11,7 @@
   document.body.prepend(progress);
   const progressBar = q('span', progress);
   let scrollTick = false;
+  let scrollIdleTimer = 0;
   const updateScrollEffects = () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     progressBar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
@@ -18,7 +19,12 @@
     if (!mobileExperience && !reducedMotion && q('.detail-page .hero')) document.documentElement.style.setProperty('--hero-shift', `${Math.min(48, scrollY * .075)}px`);
     scrollTick = false;
   };
-  addEventListener('scroll', () => { if (!scrollTick) { scrollTick = true; requestAnimationFrame(updateScrollEffects); } }, { passive: true });
+  addEventListener('scroll', () => {
+    if (!scrollTick) { scrollTick = true; requestAnimationFrame(updateScrollEffects); }
+    if (!document.body.classList.contains('is-scrolling')) document.body.classList.add('is-scrolling');
+    clearTimeout(scrollIdleTimer);
+    scrollIdleTimer = setTimeout(() => document.body.classList.remove('is-scrolling'), 140);
+  }, { passive: true });
   addEventListener('resize', updateScrollEffects, { passive: true });
   updateScrollEffects();
 
@@ -136,7 +142,7 @@
   if (reducedMotion || !('IntersectionObserver' in window)) {
     ambientTargets.forEach(section => section.classList.add('ambient-active'));
   } else {
-    const ambientObserver = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('ambient-active', entry.isIntersecting)), { rootMargin: '18% 0px', threshold: 0 });
+    const ambientObserver = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('ambient-active', entry.isIntersecting)), { rootMargin: '0px', threshold: .01 });
     ambientTargets.forEach(section => ambientObserver.observe(section));
   }
 
