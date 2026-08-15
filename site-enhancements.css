@@ -112,6 +112,10 @@ body:has(main#home) .section-label:after,.detail-page .label:after{content:'';di
   .model:active,.material-card:active,.product:active{transform:scale(.992)!important}
   .js-stagger .model,.js-stagger .material-card{transition-duration:.3s!important;transition-delay:0ms!important}
   body:has(main#home) .hero:before{background-image:linear-gradient(90deg,rgba(6,24,36,.88) 0%,rgba(6,24,36,.55) 58%,rgba(6,24,36,.28)),linear-gradient(0deg,rgba(6,24,36,.82),transparent 48%),url('assets/mobile/home/hero.webp')!important}
+  body:has(main#home) .hero-stats{left:24px;right:18px;gap:0;justify-content:space-between;padding:11px 12px}
+  body:has(main#home) .hero-stats div{min-width:0;font-size:8px;line-height:1.45;white-space:nowrap}
+  body:has(main#home) .hero-stats div:last-child{display:block}
+  body:has(main#home) .hero-stats strong{font-size:23px;margin-bottom:4px}
   body:has(main#home) .strength-image{background-image:linear-gradient(0deg,rgba(7,26,39,.42),transparent),url('assets/mobile/guangri/gwiz-1.webp')!important}
   body:has(main#home) .case:nth-child(1) .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-manufacturing.webp')!important}
   body:has(main#home) .case:nth-child(2) .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-office.webp')!important}
