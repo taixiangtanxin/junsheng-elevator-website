@@ -302,3 +302,9 @@ body:has(main#home) .case{box-shadow:0 14px 28px rgba(7,26,39,.1)}
 .ambient-active>.ambient-scene i,.ambient-active>.ambient-scene:before,.ambient-active>.ambient-scene:after{will-change:transform,opacity}
 .is-scrolling .ambient-scene i,.is-scrolling .ambient-scene:before,.is-scrolling .ambient-scene:after,.is-scrolling .elevator-door,.is-scrolling .elevator-door-seam,.is-scrolling .cabin-ceiling i,.is-scrolling .elevator-direction,.is-scrolling .logo-stage img{animation-play-state:paused!important}
 @media(max-width:800px){.ambient-section[data-ambient]>.ambient-scene:after{display:none}.ambient-active>.ambient-scene:before{will-change:transform,opacity}}
+
+/* Homepage first-transition stabilization */
+body:has(main#home) .nav{height:92px!important;transition:background-color .2s ease,box-shadow .2s ease!important}
+body:has(main#home) .strength-card,body:has(main#home) .honor,body:has(main#home) .case,body:has(main#home) .button,body:has(main#home) .product{will-change:auto;transform-style:flat}
+.is-scrolling:has(main#home) .reveal,.is-scrolling:has(main#home) .js-reveal{transform:none!important;transition:opacity .16s linear!important}
+@media(max-width:800px){body:has(main#home) .nav{height:76px!important}}
