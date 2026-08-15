@@ -110,6 +110,34 @@
     if (!q('main#home')) document.body.classList.add('detail-page');
   }
 
+  // Subtle, section-specific ambient backgrounds. Animation only runs near the viewport.
+  const ambientTargets = new Set([
+    ...qa('main#home > section'),
+    ...qa('.detail-page > .hero, .detail-page > .cta'),
+    ...qa('.detail-page .main > .series, .detail-page .damingfu-content > .series')
+  ]);
+  qa('.detail-page .main').forEach(container => { if (!q('.series', container)) ambientTargets.add(container); });
+  const homeAmbients = { home: 'cinematic', about: 'mist', honors: 'aurora', cases: 'lines', products: 'blueprint', contact: 'halo' };
+  const detailAmbients = ['mist', 'lines', 'aurora', 'blueprint'];
+  [...ambientTargets].forEach((section, index) => {
+    if (section.dataset.ambientReady) return;
+    const semanticId = section.id || (section.matches('.hero') ? 'home' : section.matches('.cta') ? 'contact' : '');
+    section.dataset.ambient = homeAmbients[semanticId] || detailAmbients[index % detailAmbients.length];
+    section.dataset.ambientReady = 'true';
+    section.classList.add('ambient-section');
+    const scene = document.createElement('div');
+    scene.className = 'ambient-scene';
+    scene.setAttribute('aria-hidden', 'true');
+    scene.innerHTML = '<i></i><i></i><i></i>';
+    section.prepend(scene);
+  });
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    ambientTargets.forEach(section => section.classList.add('ambient-active'));
+  } else {
+    const ambientObserver = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('ambient-active', entry.isIntersecting)), { rootMargin: '18% 0px', threshold: 0 });
+    ambientTargets.forEach(section => ambientObserver.observe(section));
+  }
+
   const hoverFine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   const decorateCard = card => {
     if (card.dataset.fxReady) return;
