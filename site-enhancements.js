@@ -12,6 +12,11 @@
   const progressBar = q('span', progress);
   let scrollTick = false;
   let scrollIdleTimer = 0;
+  const markScrolling = () => {
+    if (!document.body.classList.contains('is-scrolling')) document.body.classList.add('is-scrolling');
+    clearTimeout(scrollIdleTimer);
+    scrollIdleTimer = setTimeout(() => document.body.classList.remove('is-scrolling'), 220);
+  };
   const updateScrollEffects = () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     progressBar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
@@ -21,10 +26,10 @@
   };
   addEventListener('scroll', () => {
     if (!scrollTick) { scrollTick = true; requestAnimationFrame(updateScrollEffects); }
-    if (!document.body.classList.contains('is-scrolling')) document.body.classList.add('is-scrolling');
-    clearTimeout(scrollIdleTimer);
-    scrollIdleTimer = setTimeout(() => document.body.classList.remove('is-scrolling'), 140);
+    markScrolling();
   }, { passive: true });
+  addEventListener('wheel', markScrolling, { passive: true });
+  addEventListener('touchmove', markScrolling, { passive: true });
   addEventListener('resize', updateScrollEffects, { passive: true });
   updateScrollEffects();
 
