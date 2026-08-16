@@ -3,6 +3,14 @@
   const qa = (selector, root = document) => [...root.querySelectorAll(selector)];
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const mobileExperience = matchMedia('(max-width: 800px)').matches;
+  const productPageClass = ({
+    'passenger-elevator.html': 'product-passenger',
+    'freight-elevator.html': 'product-freight',
+    'escalator-walkway.html': 'product-escalator',
+    'damingfu-villa-elevator.html': 'product-villa',
+    'maintenance.html': 'product-maintenance'
+  })[location.pathname.split('/').pop()];
+  if (productPageClass) document.body.classList.add('product-page', productPageClass);
 
   const progress = document.createElement('div');
   progress.className = 'site-progress';
