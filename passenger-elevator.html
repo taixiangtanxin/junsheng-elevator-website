@@ -5,7 +5,7 @@
   <title>乘客电梯 | 骏升电梯</title>
   <script>if(matchMedia('(min-width:801px)').matches){const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap';document.head.appendChild(l)}</script>
   <link rel="stylesheet" href="product-detail.css">
-  <link rel="stylesheet" href="site-enhancements.css"><link rel="stylesheet" href="esw.css"><link rel="stylesheet" href="series-info.css"><link rel="stylesheet" href="passenger-nav.css">
+  <link rel="stylesheet" href="site-enhancements.css?v=20260818p1"><link rel="stylesheet" href="esw.css"><link rel="stylesheet" href="series-info.css"><link rel="stylesheet" href="passenger-nav.css">
 </head>
 <body class="product-page product-passenger" style="--hero:url('assets/guangri/gwiz-1.jpg')">
   <header class="nav"><a class="brand" href="index.html"><span class="mark"></span><span>骏升电梯<small>JUNSHENG ELEVATOR</small></span></a><a class="back" href="index.html#products">← 返回产品中心</a></header>
@@ -80,5 +80,5 @@
     passengerSideLinks.forEach(link=>link.addEventListener('click',event=>{const target=document.querySelector(link.getAttribute('href'));if(!target)return;event.preventDefault();setPassengerActive(target.id);target.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'',link.getAttribute('href'));}));
     if(passengerTargets.length){setPassengerActive(passengerTargets[0].id);const passengerObserver=new IntersectionObserver(entries=>{const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);if(visible[0])setPassengerActive(visible[0].target.id)},{rootMargin:'-18% 0px -68% 0px',threshold:[0,.1]});passengerTargets.forEach(target=>passengerObserver.observe(target));}
   </script>
-  <script src="site-enhancements.js" defer></script>
+  <script src="site-enhancements.js?v=20260818p1" defer></script>
 </body></html>

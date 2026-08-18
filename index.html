@@ -51,7 +51,7 @@
     /* Keep an elevator visual for the company-strength section */
     .strength-image{background:linear-gradient(0deg,rgba(7,26,39,.42),transparent),url('assets/guangri/gwiz-1.jpg') center/cover!important}
   </style>
-  <link rel="stylesheet" href="site-enhancements.css">
+  <link rel="stylesheet" href="site-enhancements.css?v=20260818p1">
 </head>
 <body class="home-page">
   <div class="topline"></div>
@@ -78,6 +78,6 @@
   </script>
   <button class="back-top" type="button" aria-label="返回页面顶部">↑</button>
   <script>const topBtn=document.querySelector('.back-top');let topTick=false;const updateTop=()=>{topBtn.classList.toggle('visible',scrollY>600);topTick=false};addEventListener('scroll',()=>{if(!topTick){topTick=true;requestAnimationFrame(updateTop)}},{passive:true});updateTop();topBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');o.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>o.observe(e));const sections=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('section-active',e.isIntersecting)),{threshold:.22});document.querySelectorAll('.section,.cta').forEach(e=>sections.observe(e));const links=document.querySelectorAll('.nav-links a');const navWatcher=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')===`#${e.target.id}`))}),{rootMargin:'-35% 0px -55% 0px',threshold:0});document.querySelectorAll('section[id]').forEach(s=>navWatcher.observe(s));</script>
-  <script src="site-enhancements.js" defer></script>
+  <script src="site-enhancements.js?v=20260818p1" defer></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <title>别墅梯 | 骏升电梯</title>
   <script>if(matchMedia('(min-width:801px)').matches){const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap';document.head.appendChild(l)}</script>
   <link rel="stylesheet" href="product-detail.css">
-  <link rel="stylesheet" href="site-enhancements.css">
+  <link rel="stylesheet" href="site-enhancements.css?v=20260818p1">
 </head>
 <body style="--hero:url('assets/damingfu/products/d01.jpg')">
   <header class="nav"><a class="brand" href="index.html"><span class="mark"></span><span>骏升电梯<small>JUNSHENG ELEVATOR</small></span></a><a class="back" href="index.html#products">← 返回产品中心</a></header>
@@ -85,5 +85,5 @@
     const setActiveSideLink=id=>sideLinks.forEach(link=>{const active=link.getAttribute('href')===`#${id}`;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current')});
     if(sideTargets.length){setActiveSideLink(sideTargets[0].id);const sideObserver=new IntersectionObserver(entries=>{const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);if(visible[0])setActiveSideLink(visible[0].target.id)},{rootMargin:'-18% 0px -68% 0px',threshold:[0,.1]});sideTargets.forEach(target=>sideObserver.observe(target));}
   </script>
-  <script src="site-enhancements.js" defer></script>
+  <script src="site-enhancements.js?v=20260818p1" defer></script>
 </body></html>
