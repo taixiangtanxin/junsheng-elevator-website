@@ -386,3 +386,43 @@ body{background-image:radial-gradient(circle at 10% 8%,rgba(255,255,255,.8),tran
 /* Maintenance service page: real on-site imagery and service framework */
 .product-maintenance .hero{background:linear-gradient(110deg,rgba(4,20,30,.93) 0%,rgba(7,34,47,.78) 48%,rgba(7,26,39,.3)),var(--hero) center 42%/cover}.maintenance-assurance{display:grid;grid-template-columns:repeat(4,1fr);margin:0 0 66px;border:1px solid #d7dfe0;background:rgba(255,255,255,.7);box-shadow:0 16px 38px rgba(7,26,39,.065)}.maintenance-assurance>div{min-height:150px;padding:24px;border-right:1px solid #d7dfe0;display:flex;flex-direction:column}.maintenance-assurance>div:last-child{border-right:0}.maintenance-assurance b{color:#1683b9;font:12px 'DM Mono',monospace}.maintenance-assurance strong{margin:22px 0 8px;font-size:18px}.maintenance-assurance span{color:#718087;font-size:12px;line-height:1.7}.maintenance-showcase{padding-top:18px}.maintenance-models{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.maintenance-models .model{min-height:0;border-radius:2px;overflow:hidden}.maintenance-models .model-image{height:auto;aspect-ratio:16/10;background:#dfe6e6}.maintenance-models .model:nth-child(-n+2) .model-image{aspect-ratio:4/5}.maintenance-models .model-image img{object-fit:cover}.maintenance-models .model-body{min-height:210px;padding:24px}.maintenance-models .model h3{font-size:24px}.maintenance-models .model p{font-size:13px;line-height:1.8}.maintenance-points{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}.maintenance-points span{padding:6px 9px;border:1px solid #d7e3e6;background:#f3f7f7;color:#526b75;font-size:10px}.product-maintenance .cta p{font-weight:700;font-variant-numeric:tabular-nums}
 @media(max-width:800px){.product-maintenance .hero{background-position:56% center}.maintenance-assurance{grid-template-columns:1fr 1fr;margin-bottom:48px}.maintenance-assurance>div{min-height:132px;padding:18px}.maintenance-assurance>div:nth-child(2){border-right:0}.maintenance-assurance>div:nth-child(-n+2){border-bottom:1px solid #d7dfe0}.maintenance-assurance strong{margin:15px 0 6px;font-size:15px}.maintenance-showcase .series-head p{margin-top:9px}.maintenance-models{grid-template-columns:1fr;gap:18px}.maintenance-models .model-image{aspect-ratio:16/10}.maintenance-models .model:nth-child(-n+2) .model-image{aspect-ratio:4/5}.maintenance-models .model-body{min-height:205px;padding:20px}.maintenance-models .model h3{font-size:21px}.maintenance-points{margin-top:14px}}
+
+/* Fuji passenger elevator: concise, budget-led alternative */
+.product-passenger .fuji-economy{--fuji-gold:#d8aa4c;--fuji-ink:#071b28;--fuji-blue:#76d8ed}
+.product-passenger .fuji-price-panel{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.75fr);overflow:hidden;border:1px solid rgba(7,31,45,.14);background:#081d2a;box-shadow:0 24px 56px rgba(7,27,40,.14)}
+.product-passenger .fuji-price-copy{position:relative;padding:50px 52px 48px;background:radial-gradient(circle at 92% 10%,rgba(118,216,237,.2),transparent 31%),linear-gradient(135deg,#0d3041,#071a27 72%);color:#fff;isolation:isolate}
+.product-passenger .fuji-price-copy:after{content:'VALUE';position:absolute;right:-8px;bottom:-26px;z-index:-1;color:rgba(255,255,255,.035);font:800 112px/1 'DM Mono',monospace;letter-spacing:-.12em}
+.product-passenger .fuji-price-copy>small{color:var(--fuji-blue);font:10px 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase}
+.product-passenger .fuji-price-copy h3{max-width:680px;margin:18px 0 20px;color:#fff;font-size:clamp(30px,3.4vw,50px);line-height:1.18;letter-spacing:-.04em}
+.product-passenger .fuji-price-copy>p{max-width:720px;color:#b9cbd2;font-size:14px;line-height:1.95}
+.product-passenger .fuji-value-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:29px}
+.product-passenger .fuji-value-tags span{padding:8px 12px;border:1px solid rgba(118,216,237,.23);background:rgba(255,255,255,.045);color:#e8f4f6;font-size:11px;letter-spacing:.05em}
+.product-passenger .fuji-quote-box{display:flex;min-height:100%;padding:50px 38px 42px;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#f1dfb9,#d8aa4c);color:#172a31}
+.product-passenger .fuji-quote-box>span{font:10px 'DM Mono',monospace;letter-spacing:.13em;text-transform:uppercase}
+.product-passenger .fuji-quote-box>strong{display:block;margin:16px 0 18px;font-size:clamp(34px,4vw,56px);line-height:1;letter-spacing:-.06em}
+.product-passenger .fuji-quote-box>p{font-size:12px;line-height:1.8}
+.product-passenger .fuji-quote-box .button{align-self:flex-start;margin-top:27px;padding:13px 18px;border:1px solid rgba(7,27,40,.35);background:#071b28;color:#fff;font-size:12px;box-shadow:0 12px 25px rgba(7,27,40,.19)}
+.product-passenger .fuji-quote-box .button:hover{transform:translateY(-3px);background:#103b4d;box-shadow:0 18px 32px rgba(7,27,40,.25)}
+.product-passenger .fuji-model-strip{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px 32px;align-items:center;padding:26px 30px;border:1px solid #d9e2e4;border-top:0;background:rgba(255,255,255,.76)}
+.product-passenger .fuji-model-strip>div small{display:block;margin-bottom:7px;color:#71848c;font:9px 'DM Mono',monospace;letter-spacing:.1em}
+.product-passenger .fuji-model-strip>div strong{color:#153445;font-size:19px}
+.product-passenger .fuji-model-strip ul{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin:0;padding:0;list-style:none}
+.product-passenger .fuji-model-strip li{padding:9px 5px;border:1px solid #d7e3e6;background:#f2f6f6;color:#315666;font:10px 'DM Mono',monospace;text-align:center}
+.product-passenger .fuji-model-strip>p{grid-column:1/-1;margin:0;color:#849298;font-size:10px;line-height:1.6}
+@media(min-width:801px){.product-passenger .fuji-economy{min-height:calc(100vh - 82px)}}
+@media(max-width:800px){
+  .product-passenger .fuji-economy .series-head{margin-bottom:18px}
+  .product-passenger .fuji-price-panel{grid-template-columns:1fr;border-radius:13px;box-shadow:0 14px 34px rgba(7,27,40,.13)}
+  .product-passenger .fuji-price-copy{padding:29px 23px 27px}
+  .product-passenger .fuji-price-copy:after{right:-4px;bottom:-9px;font-size:68px}
+  .product-passenger .fuji-price-copy h3{margin:13px 0 15px;font-size:29px;line-height:1.24}
+  .product-passenger .fuji-price-copy>p{font-size:13px;line-height:1.8}
+  .product-passenger .fuji-value-tags{margin-top:21px}
+  .product-passenger .fuji-value-tags span{padding:7px 9px;font-size:10px}
+  .product-passenger .fuji-quote-box{padding:27px 23px 25px}
+  .product-passenger .fuji-quote-box>strong{margin:12px 0 12px;font-size:38px}
+  .product-passenger .fuji-quote-box .button{width:100%;margin-top:20px;text-align:center}
+  .product-passenger .fuji-model-strip{grid-template-columns:1fr;gap:17px;padding:22px 18px;border-radius:0 0 13px 13px}
+  .product-passenger .fuji-model-strip ul{grid-template-columns:repeat(3,1fr)}
+  .product-passenger .fuji-model-strip>p{grid-column:auto}
+}

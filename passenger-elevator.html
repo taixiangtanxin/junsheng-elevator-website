@@ -5,7 +5,7 @@
   <title>乘客电梯 | 骏升电梯</title>
   <script>if(matchMedia('(min-width:801px)').matches){const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=DM+Mono&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap';document.head.appendChild(l)}</script>
   <link rel="stylesheet" href="product-detail.css">
-  <link rel="stylesheet" href="site-enhancements.css?v=20260819img2"><link rel="stylesheet" href="esw.css"><link rel="stylesheet" href="series-info.css"><link rel="stylesheet" href="passenger-nav.css">
+  <link rel="stylesheet" href="site-enhancements.css?v=20260819fuji1"><link rel="stylesheet" href="esw.css"><link rel="stylesheet" href="series-info.css"><link rel="stylesheet" href="passenger-nav.css">
 </head>
 <body class="product-page product-passenger" style="--hero:url('assets/guangri/gwiz-1.jpg')">
   <header class="nav"><a class="brand" href="index.html"><span class="mark"></span><span>骏升电梯<small>JUNSHENG ELEVATOR</small></span></a><a class="back" href="index.html#products">← 返回产品中心</a></header>
@@ -54,7 +54,28 @@
       <div class="series-head"><div><div class="label">ESW / standard configuration</div><h2 style="font-size:23px">标准配套部件</h2></div><p>轿内操纵箱、厅外召唤箱、按钮及消防盒</p></div><div class="models components esw-components" id="esw-standard-components"></div>
       <div class="series-head"><div><div class="label">ESW / paid configuration</div><h2 style="font-size:23px">有偿选配部件</h2></div><p>操纵箱、召唤箱、无障碍操纵盘、人机界面与到站灯</p></div><div class="models components esw-components" id="esw-paid-components"></div>
     </section>
-    <section class="series passenger-nav-target" id="fuji-series"><div class="series-head"><div><div class="label">Brand 02</div><h2>富士电梯</h2></div><p>产品资料待补充</p></div><div class="models" id="fuji"></div></section>
+    <section class="series passenger-nav-target fuji-economy" id="fuji-series">
+      <div class="series-head"><div><div class="label">Brand 02 · Economy option</div><h2>富士电梯</h2></div><p>经济型乘客电梯方案</p></div>
+      <div class="fuji-price-panel">
+        <div class="fuji-price-copy">
+          <small>Budget-friendly passenger elevator</small>
+          <h3>预算更友好，<br>实用配置一步到位</h3>
+          <p>面向重视初始采购成本的住宅、办公楼、商住楼、酒店及商业场所。在满足项目技术条件和验收要求的前提下，优先配置日常使用所需功能，减少不必要的装潢与附加投入。</p>
+          <div class="fuji-value-tags"><span>经济实惠</span><span>安全耐用</span><span>实用配置</span></div>
+        </div>
+        <div class="fuji-quote-box">
+          <span>经济型方案</span>
+          <strong>价格优先</strong>
+          <p>根据载重、速度、层站、井道条件和选配项目核定实际报价。</p>
+          <a class="button" href="tel:13652500766">获取经济型报价 →</a>
+        </div>
+      </div>
+      <div class="fuji-model-strip">
+        <div><small>公开乘客电梯型号</small><strong>FJ-K11 至 FJ-K16</strong></div>
+        <ul><li>FJ-K11</li><li>FJ-K12</li><li>FJ-K13</li><li>FJ-K14</li><li>FJ-K15</li><li>FJ-K16</li></ul>
+        <p>型号及最终配置以项目选型和厂家现行资料为准。</p>
+      </div>
+    </section>
       </div>
     </div>
   </main>
@@ -73,7 +94,6 @@
     const makeEswComponents = (items, id, group) => el(id).innerHTML = items.map(x => `<article class="model component-card"><div class="model-image"><picture class="mobile-picture"><source media="(max-width:800px)" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-mobile-srcset="assets/thumbs/guangri/esw/components/${x[0].replace(/\.(?:jpe?g|png|webp)$/i,'.webp')}"><img src="assets/guangri/esw/components/${x[0]}" alt="广日电梯 ESW ${x[1]} ${x[2]}"></picture></div><div class="model-body"><small>${group} / ${x[1]}</small><h3>${x[2]}</h3><p>${x[3]}</p><a class="ask" href="index.html#contact">咨询此配置</a></div></article>`).join('');
     makeEswComponents([['standard-bop56-sra11.jpg','CAR OPERATION PANEL','BOP56-SRA11','玻璃面板、喷砂不锈钢，抗指纹。'],['standard-hbi56-sra36.jpg','HALLCALLING BOX','HBI56-SRA36','玻璃面板、喷砂不锈钢，抗指纹。'],['standard-button56.jpg','BUTTON','56 型按钮','磨砂不锈钢字片，带盲文，发白光。'],['standard-fbs4.jpg','FIRE BOX','FB-S4','ESW 标准消防盒。']], 'esw-standard-components', 'ESW / STANDARD');
     makeEswComponents([['paid-bop56-gra12.jpg','CAR OPERATION PANEL','BOP56-GRA12','全玻璃面板轿内操纵箱。'],['paid-hbi56-gra37.jpg','HALLCALLING BOX','HBI56-GRA37','全玻璃面板厅外召唤箱。'],['paid-dop56.jpg','ACCESSIBILITY PANEL','DOP56-SRA0(E) / S0(E)','横置式残疾人操纵盘。'],['paid-fbs5.jpg','FIRE BOX','FB-S5','全玻璃面板有偿选配消防盒。'],['paid-hmi-cde.jpg','HUMAN-MACHINE INTERFACE','C / D / E 型显示','8.8 英寸横式液晶显示，三种配色。'],['paid-arrival-lights.jpg','ARRIVAL INDICATOR','01A / 03A / 04A 型','镜面不锈钢面板，多种发光效果。']], 'esw-paid-components', 'ESW / PAID');
-    el('fuji').innerHTML = [1,2,3].map(n => `<article class="model"><div class="placeholder"><span>富士产品图片待补充</span></div><div class="model-body"><small>FUJI / 0${n}</small><h3>富士乘客电梯 · 待补充</h3><p>型号、图片与技术参数待补充。</p><a class="ask" href="index.html#contact">咨询此产品</a></div></article>`).join('');
     const passengerSideLinks=[...document.querySelectorAll('.passenger-side-nav a')];
     const passengerTargets=passengerSideLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
     const setPassengerActive=id=>passengerSideLinks.forEach(link=>{const active=link.getAttribute('href')===`#${id}`;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current')});
