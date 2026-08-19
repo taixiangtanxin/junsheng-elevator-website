@@ -9,9 +9,9 @@
 </head>
 <body style="--hero:url('assets/damingfu/products/d01.jpg')">
   <header class="nav"><a class="brand" href="index.html"><span class="mark"></span><span>骏升电梯<small>JUNSHENG ELEVATOR</small></span></a><a class="back" href="index.html#products">← 返回产品中心</a></header>
-  <section class="hero"><div><div class="eyebrow">Villa elevator</div><h1>别墅梯</h1><p>骏升电梯提供大名府与希贝姆别墅梯产品，为私人住宅与别墅空间提供舒适、安全的定制化垂直出行方案。</p></div></section>
+  <section class="hero"><div><div class="eyebrow">Villa elevator</div><h1>别墅梯</h1><p>骏升电梯提供大名府别墅梯产品，为私人住宅与别墅空间提供舒适、安全的定制化垂直出行方案。</p></div></section>
   <main class="main">
-    <div class="intro"><div><div class="label">Villa elevator brands</div><h2>让家的每一层，<br>都从容抵达</h2></div><p>大名府家用电梯画册已按装饰风格完整导入。点击任一轿厢图片，可查看该型号在画册中的完整页面，包含轿厢、层门与空间效果图。</p></div>
+    <div class="intro"><div><div class="label">Daming Palace villa elevator</div><h2>让家的每一层，<br>都从容抵达</h2></div><p>大名府家用电梯画册已按装饰风格完整导入。点击任一轿厢图片，可查看该型号在画册中的完整页面，包含轿厢、层门与空间效果图。</p></div>
     <div class="damingfu-layout">
       <aside class="damingfu-side-nav" aria-label="大名府产品导航">
         <div class="side-nav-kicker">DAMING PALACE</div>
@@ -27,7 +27,7 @@
       </aside>
       <div class="damingfu-content">
     <section class="series" id="damingfu-overview">
-      <div class="series-head"><div><div class="label">Brand 01</div><h2>大名府家用电梯</h2></div><p>38 款轿厢，7 大装饰风格系列</p></div>
+      <div class="series-head"><div><div class="label">Daming Palace</div><h2>大名府家用电梯</h2></div><p>38 款轿厢，7 大装饰风格系列</p></div>
       <section class="damingfu-showcase" id="damingfu-showcase" aria-labelledby="showcase-title">
         <div class="showcase-copy"><div class="label">Interior inspiration</div><h2 id="showcase-title">融入家的风格，<br>点亮生活空间</h2><p>精选画册第 27 至 29 页住宅装潢效果，以完整家居场景呈现电梯与客厅、餐厅及卧室空间的自然衔接。</p><a class="ask" href="#damingfu-series-4">浏览相关简约系列</a></div>
         <div class="showcase-gallery">
@@ -52,7 +52,6 @@
     </section>
       </div>
     </div>
-    <section class="series"><div class="series-head"><div><div class="label">Brand 02</div><h2>希贝姆别墅梯</h2></div><p>产品资料待补充</p></div><div class="models" id="hibim"></div></section>
   </main>
   <section class="cta"><div><h2>预约别墅梯咨询？</h2><p>联系我们获取别墅空间的专属方案。</p></div><a class="button" href="index.html#contact">立即咨询 →</a></section>
   <footer>© 2026 DONGGUAN JUNSHENG ELEVATOR CO., LTD.</footer>
@@ -79,7 +78,6 @@
     const renderMaterials=()=>{const data=materials[materialKind];materialFilters.innerHTML=`<button class="material-filter ${materialGroup==='all'?'active':''}" type="button" data-material-group="all">全部</button>${data.groups.map(g=>`<button class="material-filter ${materialGroup===g.id?'active':''}" type="button" data-material-group="${g.id}">${g.name} <span>${g.items.length}</span></button>`).join('')}`;const visible=data.groups.filter(g=>materialGroup==='all'||g.id===materialGroup).flatMap(g=>g.items.map(item=>({code:item[0],name:item[1],group:g.name})));materialSummary.textContent=`正在展示 ${data.label} · ${visible.length} 款`;materialGrid.innerHTML=visible.map(x=>`<article class="material-card"><a class="material-swatch car-detail-link" href="assets/damingfu/materials/${materialKind}-${x.code.toLowerCase()}.jpg" target="_blank" title="放大查看 ${x.code} ${x.name}"><picture class="mobile-picture"><source media="(max-width:800px)" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-mobile-srcset="assets/thumbs/damingfu/materials/${materialKind}-${x.code.toLowerCase()}.webp"><img src="assets/damingfu/materials/${materialKind}-${x.code.toLowerCase()}.jpg" alt="大名府 ${x.code} ${x.name}"></picture><span>放大查看</span></a><div class="material-meta"><strong>${x.code}</strong><span>${x.name}</span><small>${x.group}</small></div></article>`).join('')};
     const keepMaterialInView=()=>requestAnimationFrame(()=>document.querySelector('.material-toolbar').scrollIntoView({block:'start',behavior:'auto'}));
     document.querySelectorAll('.material-tab').forEach(tab=>tab.addEventListener('click',()=>{materialKind=tab.dataset.materialKind;materialGroup='all';document.querySelectorAll('.material-tab').forEach(x=>{const on=x===tab;x.classList.toggle('active',on);x.setAttribute('aria-selected',on)});renderMaterials();keepMaterialInView()}));materialFilters.addEventListener('click',e=>{const button=e.target.closest('[data-material-group]');if(!button)return;materialGroup=button.dataset.materialGroup;renderMaterials();keepMaterialInView()});renderMaterials();
-    document.getElementById('hibim').innerHTML = [1,2,3].map(n => `<article class="model"><div class="placeholder"><span>希贝姆产品图片待补充</span></div><div class="model-body"><small>HIBIM / 0${n}</small><h3>希贝姆别墅梯 · 待补充</h3><p>型号、图片与技术参数待补充。</p><a class="ask" href="index.html#contact">咨询此产品</a></div></article>`).join('');
     const sideLinks=[...document.querySelectorAll('.damingfu-side-nav a')];
     const sideTargets=sideLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
     const setActiveSideLink=id=>sideLinks.forEach(link=>{const active=link.getAttribute('href')===`#${id}`;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current')});
