@@ -125,7 +125,7 @@
     img.dataset.mobileOptimized = 'true';
     const originalSrc = img.getAttribute('src');
     const fallbackSrc = mobileExperience ? mobileAssetUrl(originalSrc) : originalSrc;
-    const thumbnailSrc = thumbnailAssetUrl(originalSrc);
+    const thumbnailSrc = !mobileExperience && productPageClass === 'product-maintenance' ? originalSrc : thumbnailAssetUrl(originalSrc);
     if (mobileExperience) {
       img.loading = 'lazy';
       img.fetchPriority = 'low';
