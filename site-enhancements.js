@@ -68,6 +68,44 @@
       return url.href;
     } catch { return raw; }
   };
+  const activateMobilePicture = picture => {
+    if (!mobileExperience || !(picture instanceof HTMLPictureElement)) return;
+    qa('source[data-mobile-srcset]', picture).forEach(source => {
+      source.srcset = source.dataset.mobileSrcset;
+      delete source.dataset.mobileSrcset;
+    });
+  };
+  const mobilePictureObserver = mobileExperience && 'IntersectionObserver' in window ? new IntersectionObserver(entries => entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    activateMobilePicture(entry.target.closest('picture.mobile-picture'));
+    mobilePictureObserver.unobserve(entry.target);
+  }), { rootMargin: '720px 0px', threshold: 0 }) : null;
+  const registerMobilePictures = (root = document) => {
+    if (!mobileExperience) return;
+    qa('picture.mobile-picture', root).forEach(picture => {
+      if (picture.dataset.mobileObserved) return;
+      picture.dataset.mobileObserved = 'true';
+      if (mobilePictureObserver) mobilePictureObserver.observe(q('img', picture));
+      else activateMobilePicture(picture);
+    });
+  };
+  registerMobilePictures();
+  if (mobileExperience && 'MutationObserver' in window) new MutationObserver(records => records.forEach(record => record.addedNodes.forEach(node => {
+    if (!(node instanceof Element)) return;
+    if (node.matches('picture.mobile-picture')) registerMobilePictures(node.parentElement || document);
+    else registerMobilePictures(node);
+  }))).observe(document.body, { childList: true, subtree: true });
+  if (mobileExperience && document.body.classList.contains('home-page')) {
+    const mobileBackgroundTargets = qa('.strength-image, #cases .case');
+    if ('IntersectionObserver' in window) {
+      const backgroundObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('mobile-bg-ready');
+        backgroundObserver.unobserve(entry.target);
+      }), { rootMargin: '720px 0px', threshold: 0 });
+      mobileBackgroundTargets.forEach(target => backgroundObserver.observe(target));
+    } else mobileBackgroundTargets.forEach(target => target.classList.add('mobile-bg-ready'));
+  }
   if (mobileExperience) {
     const heroValue = document.body.style.getPropertyValue('--hero');
     const heroMatch = heroValue.match(/url\(["']?([^"')]+)["']?\)/i);
@@ -92,7 +130,16 @@
       img.loading = 'lazy';
       img.fetchPriority = 'low';
     } else if (index > 1) img.loading = 'lazy';
-    if (thumbnailSrc && thumbnailSrc !== originalSrc) {
+    const responsivePicture = mobileExperience ? img.closest('picture.mobile-picture') : null;
+    if (responsivePicture) {
+      img.dataset.originalSrc = fallbackSrc;
+      img.addEventListener('error', () => {
+        if (img.dataset.mobileFallback || !img.dataset.originalSrc) return;
+        img.dataset.mobileFallback = 'true';
+        qa('source', responsivePicture).forEach(source => source.remove());
+        img.src = img.dataset.originalSrc;
+      }, { once: true });
+    } else if (thumbnailSrc && thumbnailSrc !== originalSrc) {
       img.dataset.originalSrc = fallbackSrc;
       img.src = thumbnailSrc;
       img.addEventListener('error', () => {
@@ -307,6 +354,8 @@
       }
       activePreferredSrc = src; activeOriginalSrc = originalSrc; activeLabel = label;
       const sequence = ++loadSequence;
+      const previewSrc = thumbnailAssetUrl(originalSrc);
+      let previewReady = false, fullImageReady = false;
       clearTimeout(loadTimer);
       viewer.classList.remove('has-error'); viewer.classList.add('is-loading');
       statusText.textContent = '高清图片加载中…';
@@ -315,6 +364,11 @@
       const fail = () => {
         if (sequence !== loadSequence) return;
         clearTimeout(loadTimer);
+        if (previewReady) {
+          viewer.classList.remove('is-loading', 'has-error');
+          image.style.opacity = '1';
+          return;
+        }
         viewer.classList.remove('is-loading'); viewer.classList.add('has-error');
         statusText.textContent = navigator.onLine ? '图片暂时未能加载' : '当前网络已断开';
         statusNote.textContent = navigator.onLine ? '请点击重新加载，或稍后切换网络再试' : '恢复网络后点击重新加载';
@@ -326,16 +380,12 @@
         loader.onload = async () => {
           if (sequence !== loadSequence) return;
           clearTimeout(loadTimer);
+          fullImageReady = true;
           image.src = candidate;
           try { await image.decode(); } catch {}
           if (sequence !== loadSequence) return;
           viewer.classList.remove('is-loading', 'has-error');
           image.style.opacity = '1';
-          const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-          if (gallery.length > 1 && !connection?.saveData && connection?.effectiveType !== '2g') {
-            const nextLink = gallery[(galleryIndex + 1) % gallery.length];
-            const prefetch = new Image(); prefetch.decoding = 'async'; prefetch.src = mobileAssetUrl(nextLink.href);
-          }
         };
         loader.onerror = () => {
           clearTimeout(loadTimer);
@@ -344,6 +394,20 @@
         };
         loader.src = candidate;
       };
+      if (previewSrc && previewSrc !== src) {
+        const preview = new Image();
+        preview.decoding = 'async';
+        preview.onload = async () => {
+          if (sequence !== loadSequence || fullImageReady) return;
+          previewReady = true;
+          image.src = previewSrc;
+          try { await image.decode(); } catch {}
+          if (sequence !== loadSequence || fullImageReady) return;
+          viewer.classList.remove('is-loading', 'has-error');
+          image.style.opacity = '1';
+        };
+        preview.src = previewSrc;
+      }
       attempt(src, true);
     };
     const close = () => {

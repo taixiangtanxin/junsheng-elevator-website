@@ -116,9 +116,11 @@ body{background-image:radial-gradient(circle at 10% 8%,rgba(255,255,255,.8),tran
   .home-page .hero-stats div{min-width:0;font-size:8px;line-height:1.45;white-space:nowrap}
   .home-page .hero-stats div:last-child{display:block}
   .home-page .hero-stats strong{font-size:23px;margin-bottom:4px}
-  .home-page .strength-image{background-image:linear-gradient(0deg,rgba(7,26,39,.42),transparent),url('assets/mobile/guangri/gwiz-1.webp')!important}
-  .home-page .case:nth-child(1) .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-manufacturing.webp')!important}
-  .home-page .case:nth-child(2) .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-office.webp')!important}
+  .home-page .strength-image{background-image:linear-gradient(0deg,rgba(7,26,39,.42),rgba(9,37,50,.14))!important}
+  .home-page .strength-image.mobile-bg-ready{background-image:linear-gradient(0deg,rgba(7,26,39,.42),transparent),url('assets/mobile/guangri/gwiz-1.webp')!important}
+  .home-page .case:nth-child(1) .case-img,.home-page .case:nth-child(2) .case-img{background-image:linear-gradient(145deg,#173747,#071a27)!important}
+  .home-page .case:nth-child(1).mobile-bg-ready .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-manufacturing.webp')!important}
+  .home-page .case:nth-child(2).mobile-bg-ready .case-img{background-image:linear-gradient(0deg,rgba(3,15,23,.84),transparent 65%),url('assets/mobile/home/case-office.webp')!important}
   .home-page #cases .case-grid>.case:not(.large){height:auto;min-height:430px}
   body[style*="photo-1541888946425"]{--hero:url('assets/mobile/home/maintenance.webp')!important}
   .project-logo-showcase.mobile-offscreen .logo-stage img{animation-play-state:paused!important}
@@ -360,7 +362,7 @@ body{background-image:radial-gradient(circle at 10% 8%,rgba(255,255,255,.8),tran
 .home-page:before,.product-page:before{display:none!important}
 .home-page main#home>section:not(.hero),.product-page .main>.series,.product-page .damingfu-group,.product-page .main>.accessory-collection,.product-page .main>.material-library,.product-page .main>.esw-series,.product-page .main>.damingfu-showcase{content-visibility:auto;contain-intrinsic-size:auto 860px}
 .home-page #cases:not(.ambient-active) .logo-stage img{animation-play-state:paused!important}
-.home-page .logo-stage img:nth-child(1){animation-delay:-1.2s}.home-page .logo-stage img:nth-child(2){animation-delay:1.8s}.home-page .logo-stage img:nth-child(3){animation-delay:4.8s}.home-page .logo-stage img:nth-child(4){animation-delay:7.8s}
+.home-page .logo-stage picture:nth-child(1) img{animation-delay:-1.2s}.home-page .logo-stage picture:nth-child(2) img{animation-delay:1.8s}.home-page .logo-stage picture:nth-child(3) img{animation-delay:4.8s}.home-page .logo-stage picture:nth-child(4) img{animation-delay:7.8s}
 .product-page .ambient-section>.ambient-scene:before{animation:none!important;background:radial-gradient(ellipse at 72% 34%,rgba(var(--detail-rgb),.13),transparent 35%),linear-gradient(118deg,transparent 18%,rgba(var(--detail-rgb),.07) 46%,transparent 72%)}
 .product-page .ambient-section>.ambient-scene:after{width:10%;filter:none!important;animation-duration:19s}
 .product-page .ambient-section>.ambient-scene i:nth-child(3){animation:none!important}
@@ -371,3 +373,7 @@ body{background-image:radial-gradient(circle at 10% 8%,rgba(255,255,255,.8),tran
 /* Passenger series summaries: compact mobile-only introduction */
 .mobile-series-summary{display:none}
 @media(max-width:800px){.product-passenger .series-profile,.product-passenger .esw-overview{display:none!important}.product-passenger .mobile-series-summary{display:block;position:relative;margin:0 0 18px;padding:16px 17px 16px 20px;border:1px solid rgba(79,190,223,.2);border-radius:13px;background:linear-gradient(125deg,rgba(79,190,223,.1),rgba(255,255,255,.76));color:#52656d;font-size:13px;line-height:1.85;box-shadow:0 10px 25px rgba(12,48,62,.055)}.product-passenger .mobile-series-summary:before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:linear-gradient(#62cbe7,#d7a845)}.product-passenger .mobile-series-summary strong{display:block;margin-bottom:4px;color:#112d3c;font-size:16px;letter-spacing:.02em}}
+
+/* Parse-time responsive images: mobile never starts downloading desktop originals */
+.mobile-picture{display:contents}
+@media(max-width:800px){body[style*="assets/guangri/gwiz-1.jpg"]{--hero:url('assets/mobile/guangri/gwiz-1.webp')!important}body[style*="freight/freight-hero.jpg"]{--hero:url('assets/mobile/guangri/freight/freight-hero.webp')!important}body[style*="escalator/grf-indoor.jpg"]{--hero:url('assets/mobile/guangri/escalator/grf-indoor.webp')!important}body[style*="assets/damingfu/products/d01.jpg"]{--hero:url('assets/mobile/damingfu/products/d01.webp')!important}}
